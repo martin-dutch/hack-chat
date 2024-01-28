@@ -38,6 +38,7 @@ export default function IndexPage() {
         window.location.href = `/chat/${id}?newsTitle=Trump slams Haley in the latest Primary polls and says she is horrible!`
       })
       .catch(error => {
+        
         console.error('Error:', error)
       })
   }, [])

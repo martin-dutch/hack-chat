@@ -4,12 +4,14 @@
  * @see https://v0.dev/t/q0wZOs61MZI
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
+import Toolbar from '@/components/toolbar'
 import Link from 'next/link'
 import { JSX, SVGProps } from 'react'
 
 export default function Component() {
   return (
     <div className="flex flex-col min-h-[100vh]">
+      <Toolbar title="COGNISANT.AI" mainPage/>
       <header className="px-4 lg:px-6 h-14 flex items-center">
         <Link className="flex items-center justify-center" href="#">
           <GlobeIcon className="h-6 w-6" />

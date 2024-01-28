@@ -23,7 +23,7 @@ const Timer: FC<TimerComponentProps> = ({ onTimerComplete }) => {
   }, [timeLeft, onTimerComplete]);
 
   return (
-    <div className="flex items-center justify-center space-x-4">
+    <div className="flex items-center justify-center space-x-4 pt-6 max-w-4xl mx-auto">
       <div className="w-full h-2 bg-gray-200 rounded-full mb-3">
         <div
           className="h-full bg-gray-600 rounded-full timer-bar" // Add the 'timer-bar' class

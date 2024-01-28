@@ -11,6 +11,7 @@ import { CodeBlock } from '@/components/ui/codeblock'
 import { MemoizedReactMarkdown } from '@/components/markdown'
 import { IconOpenAI, IconUser } from '@/components/ui/icons'
 import { ChatMessageActions } from '@/components/chat-message-actions'
+import MyLoader from './textLoader';
 
 export interface ChatMessageProps {
   message: Message
@@ -76,6 +77,9 @@ export function ChatMessage({ message,size, ...props }: ChatMessageProps) {
         >
           {message.content}
         </MemoizedReactMarkdown>
+        {
+          message.content.length === 0 ? (<MyLoader/>) : (<></>)
+        }
         <ChatMessageActions message={message} />
       </div>
     </div>

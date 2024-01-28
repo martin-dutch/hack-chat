@@ -139,12 +139,15 @@ const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest
     
   return (
     <>
-      <Toolbar title={round === 0 ? newsTitle : `Round ${round}`} />
-      <div className={cn('pb-[200px] pt-4 md:pt-10', className)}>
-        {showPoll ? <div>
+      <Toolbar title={round === 0 ? newsTitle : `Round ${round}`} onCallback={() => {
+        window.location.href = `/news`
+      }} />
+      <div>
+        {showPoll ? <div className='max-w-4xl mx-auto  my-6 p-8 relative '>
+          <h1 className="text-2xl font-bold tracking-tighter sm:text-2xl md:text-1xl pl-2">Poll results</h1>
           {
             chat?.articles.map((article, index) => {
-              return <PollResults key={index} nikki={article.resultsNikky ?? 50} trump={100 - (article.resultsNikky ?? 50)}  />
+              return <PollResults key={index} index={index} nikki={article.resultsNikky ?? 50} trump={100 - (article.resultsNikky ?? 50)}  />
             })
           }
         </div> : showNewsArticle ? <>

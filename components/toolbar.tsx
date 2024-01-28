@@ -7,16 +7,16 @@ import { Button } from "@/components/ui/button"
 import { useRouter } from 'next/navigation'
 
 
-export default function Toolbar({ title }: {title: string}) {
+export default function Toolbar({ title, mainPage, onCallback }: {title: string, mainPage?: boolean, onCallback?: () => void}) {
     const router = useRouter()
   return (
-    <div className="flex items-center justify-between p-4 bg-white shadow-md">
-      <Button size="icon" variant="ghost" onClick={() => router.back()}>
+    <div className="flex items-center justify-between p-4 bg-white shadow-md text-center sticky top-0">
+      <Button size="icon" variant="ghost" onClick={() => onCallback ? onCallback() : router.back()} className={`${mainPage ? 'opacity-0' : ''}`}>
         <ArrowLeftIcon className="h-4 w-4" />
         <span className="sr-only">Back</span>
       </Button>
-      <h1 className="text-lg font-semibold">{title}</h1>
-      <div className="flex gap-2">
+      <h1 className="text-lg font-semibold text-center mx-auto">{title}</h1>
+      <div className={`flex gap-2 ${mainPage ? 'opacity-0' : ''}`}>
         <Button size="icon" variant="ghost">
           <BellIcon className="h-4 w-4" />
           <span className="sr-only">Notifications</span>
