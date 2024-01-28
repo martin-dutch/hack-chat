@@ -10,19 +10,19 @@ export default function IndexPage() {
       <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-8">Welcome to Our Page</h1>
       <div className="w-full max-w-2xl">
         <Link href={'news'}>
-        <img
-          alt="Hero Image"
-          className="w-full h-64 rounded-lg object-cover"
-          height="500"
-          src="/placeholder.svg"
-          style={{
-            aspectRatio: "1000/500",
-            objectFit: "cover",
-          }}
-          width="1000"
-        />
+          {/* Replacing the video tag with an img tag for the GIF */}
+          <img
+            alt="Hero Image"
+            className="w-full rounded-lg object-cover"
+            height="1000"
+            src="/landing_page.gif" // Replace with your GIF file path
+            style={{
+              aspectRatio: "500/500",
+              // objectFit: "cover",
+            }}
+            width="1000"
+          />
         </Link>
-        
       </div>
     </main>
   )

@@ -22,6 +22,8 @@ import { Input } from './ui/input'
 import { toast } from 'react-hot-toast'
 import { usePathname, useRouter } from 'next/navigation'
 import { SideChatPanel } from './side-chat-panel'
+import HandwrittenNewspaperArticle from './newspaper'
+import PollResults from './poll-results'
 
 const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
 export interface ChatProps extends React.ComponentProps<'div'> {
@@ -57,10 +59,34 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
         }
       }
     })
+
+    const showNewsArticle = true
+    const news: {
+      title: string;
+      date: string;
+      content: string;
+    } = {
+      title: `Nikki Haley: Biden's Afghanistan withdrawal is a disaster that didn't have to happen`,
+      date: 'Aug. 17, 2021',
+      content: `The Biden administration’s botched withdrawal from Afghanistan is a disaster that didn’t have to happen. It’s a failure of leadership that will have far-reaching consequences for the United States and our allies.`
+    }
+
+    const pollResults: {
+      left: number;
+      right: number;
+    } = {
+      left: 40,
+      right: 60
+    }
+    const showPoll = false;
   return (
     <>
       <div className={cn('pb-[200px] pt-4 md:pt-10', className)}>
-        {messages.length ? (
+        {showPoll ? <PollResults /> : showNewsArticle ? <HandwrittenNewspaperArticle 
+          title={news.title}
+          date={news.date}
+          content={news.content}
+        />  :messages.length ? (
           <>
             <ChatList messages={messages} />
             <ChatScrollAnchor trackVisibility={isLoading} />
@@ -93,6 +119,8 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
         input={input}
         setInput={setInput}
       />
+
+
 
 <SideChatPanel
        id={id}
