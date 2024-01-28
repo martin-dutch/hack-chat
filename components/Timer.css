@@ -1,0 +1,3 @@
+.timer-bar {
+    transition: width 1s ease-in-out; /* Smooth transition for width change */
+  }

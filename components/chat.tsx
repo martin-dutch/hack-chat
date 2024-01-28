@@ -24,6 +24,8 @@ import { usePathname, useRouter } from 'next/navigation'
 import { SideChatPanel } from './side-chat-panel'
 import HandwrittenNewspaperArticle from './newspaper'
 import PollResults from './poll-results'
+import { useChatHook } from '@/lib/hooks/use-chat'
+import { useAuth } from '@/lib/hooks/use-auth'
 
 const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
 export interface ChatProps extends React.ComponentProps<'div'> {
@@ -38,6 +40,9 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
     'ai-token',
     null
   )
+  // const
+  //   session
+  //  = useAuth()
   const [previewTokenDialog, setPreviewTokenDialog] = useState(IS_PREVIEW)
   const [previewTokenInput, setPreviewTokenInput] = useState(previewToken ?? '')
   const { messages, append, reload, stop, isLoading, input, setInput } =
@@ -60,6 +65,15 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
       }
     })
 
+    const {
+      chat,
+      loading,
+      error
+    } = useChatHook(id ?? '', '10762010' ?? '')
+console.log('session?.user.id','10762010')
+console.log('chat Id ',id )
+    console.log('chat dcsonfpiovnokn',chat)
+
     const showNewsArticle = true
     const news: {
       title: string;
@@ -79,6 +93,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
       right: 60
     }
     const showPoll = false;
+    const roundSelect = 0
   return (
     <>
       <div className={cn('pb-[200px] pt-4 md:pt-10', className)}>
@@ -96,7 +111,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
         )}
       </div>
 
-      <SideChatPanel
+     { chat?.sideChats[roundSelect].nikiId && ( <SideChatPanel
        id={id}
        isLoading={isLoading}
        stop={stop}
@@ -107,9 +122,10 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
        setInput={setInput}
         start={true}
         name='Nikki Haley'
-       />
+        threadId={chat?.sideChats[roundSelect].nikiId ?? ''}
+       />)}
 
-      <ChatPanel
+      {/* <ChatPanel
         id={id}
         isLoading={isLoading}
         stop={stop}
@@ -118,11 +134,11 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
         messages={messages}
         input={input}
         setInput={setInput}
-      />
+      /> */}
 
 
 
-<SideChatPanel
+{ chat?.sideChats[roundSelect].trumpId && (<SideChatPanel
        id={id}
        isLoading={isLoading}
        stop={stop}
@@ -133,7 +149,8 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
        setInput={setInput}
         start={false}
         name='Trump'
-       />
+        threadId={chat?.sideChats[roundSelect].trumpId ?? ''}
+       />)}
 
       <Dialog open={previewTokenDialog} onOpenChange={setPreviewTokenDialog}>
         <DialogContent>

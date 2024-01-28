@@ -9,13 +9,14 @@ interface SidebarListProps {
   children?: React.ReactNode
 }
 
-const loadChats = cache(async (userId?: string) => {
+export const loadChats = cache(async (userId?: string) => {
   return await getChats(userId)
 })
 
 export async function SidebarList({ userId }: SidebarListProps) {
   const chats = await loadChats(userId)
 
+  console.log('chats', JSON.stringify(chats))
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
       <div className="flex-1 overflow-auto">
