@@ -82,7 +82,7 @@ export function SideChatPanel({
   })))
 
   return (
-    <Card className={`w-1/5 fixed ${start ? 'left' : 'right'}-0 inset-y-10 flex flex-col m-4 mt-10`}>
+    <Card className={`w-1/5 fixed ${start ? 'left' : 'right'}-0 inset-y-20 flex flex-col m-4 mt-10`}>
       <CardHeader className="border-b p-4">
         <CardTitle className="text-lg font-bold">{name}</CardTitle>
       </CardHeader>

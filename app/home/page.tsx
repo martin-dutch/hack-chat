@@ -7,7 +7,7 @@ export default function IndexPage() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
-      <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-8">Welcome to Our Page</h1>
+      <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-8">COGNISANT.AI</h1>
       <div className="w-full max-w-2xl">
         <Link href={'news'}>
           {/* Replacing the video tag with an img tag for the GIF */}

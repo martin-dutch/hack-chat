@@ -5,6 +5,7 @@ import { Chat } from '@/components/chat'
 import { useEffect } from 'react'
 import { loadChats } from '@/components/sidebar-list'
 import { auth } from '@/auth'
+import LottieAnimation from '@/components/loading'
 // import { Router } from 'next/navigation'
 
 export default function IndexPage() {
@@ -34,7 +35,7 @@ export default function IndexPage() {
         // Do something with the data
         // Then navigate to a different page
         console.log('data', data)
-        window.location.href = `/chat/${id}?newsTitle=Trump slams Haley in the latest Primaryt polls and says she is horrible!`
+        window.location.href = `/chat/${id}?newsTitle=Trump slams Haley in the latest Primary polls and says she is horrible!`
       })
       .catch(error => {
         console.error('Error:', error)
@@ -42,5 +43,9 @@ export default function IndexPage() {
   }, [])
 
 
-  return <div></div>
+  return <div className='items-center align-middle max-h-screen'>
+    <div className="w-200 h-200 fixed top-0 bottom-0 right-0 left-0 flex">
+      <LottieAnimation />
+    </div>
+  </div>
 }

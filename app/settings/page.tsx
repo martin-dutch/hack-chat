@@ -1,67 +1,66 @@
 /**
  * v0 by Vercel.
- * @see https://v0.dev/t/wak8TB6fDiG
+ * @see https://v0.dev/t/JJe0AS0brZy
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-import { Slider } from "@/components/ui/slider"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { Button } from '@/components/ui/button'
+import { Slider } from '@/components/ui/slider'
+import Link from 'next/link'
 
-export default function IndexPage() {
+export default function ConfigureComponent({ guy }: { guy: string }) {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
-      <header className="text-center py-10">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Fine-tune Nicki's Campaign Strategy</h1>
-        <p className="mt-2 text-gray-600 dark:text-gray-400">
-          Start with default settings and return to this screen later to adjust as needed.
-        </p>
-      </header>
-      <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-md overflow-hidden dark:bg-gray-800">
-        <div className="px-4 py-4">
-          <div className="mt-4">
-            <label className="block text-gray-600 dark:text-gray-400" htmlFor="populism">
-              Populism
-            </label>
-            <div className="mt-2">
-              <Slider
-                className="w-full h-2 rounded-full bg-gray-200 dark:bg-gray-700"
-                defaultValue={[50]}
-                id="populism"
-              >
-                <div className="h-2 rounded-full bg-blue-500">
-                  <div className="w-4 h-4 rounded-full bg-white shadow" />
-                </div>
-              </Slider>
-              <div className="flex justify-between text-xs text-gray-600 dark:text-gray-400 mt-2">
-                <span>Purely fact-based</span>
-                <span>Unrealistic, bombastic promises</span>
-              </div>
-            </div>
+    <div key="1" className="max-w-4xl mx-auto p-8 bg-white rounded-lg shadow">
+      <div className="flex-col items-center space-x-2 mb-6">
+        <ArrowLeftIcon className="h-6 w-6 text-black mb-4" />
+        <h1 className="text-2xl font-bold text-black">
+          Before we strategise, would you like to tweak the{' '}
+          {guy || 'Donald Trump'} campaign?
+        </h1>
+      </div>
+      <div className="space-y-8">
+        <div>
+          <div className="flex justify-between mb-2">
+            <span className="text-sm text-black">Purely fact-based</span>
+            <span className="text-sm text-black">Populism</span>
           </div>
-          <div className="mt-8">
-            <label className="block text-gray-600 dark:text-gray-400" htmlFor="tone">
-              Tone
-            </label>
-            <div className="mt-2">
-              <Slider className="w-full h-2 rounded-full bg-gray-200 dark:bg-gray-700" defaultValue={[100]} id="tone">
-                <div className="h-2 rounded-full bg-red-500">
-                  <div className="w-4 h-4 rounded-full bg-white shadow" />
-                </div>
-              </Slider>
-              <div className="flex justify-between text-xs text-gray-600 dark:text-gray-400 mt-2">
-                <span>Conciliatory, hope-based</span>
-                <span>Inflammatory, provocative, fear-based</span>
-              </div>
-            </div>
-          </div>
+          <Slider className="w-full bg-gray-200" defaultValue={[50]} />
         </div>
-        <Link href={'/'}>
-            <div className="px-4 py-4">
+        <div>
+          <div className="flex justify-between mb-2">
+            <span className="text-sm text-black">Conciliatory, hope-based</span>
+            <span className="text-sm text-black">
+              Inflammatory, provocative, fear-based
+            </span>
+          </div>
+          <Slider className="w-full bg-gray-200" defaultValue={[50]} />
+        </div>
+      </div>
+      <Link href={'/'}>
+            <div className="pt-4 mt-6">
             <Button className="w-full h-12 text-white bg-black hover:bg-gray-800 rounded-md">Apply Changes</Button>
             </div>
         </Link>
-      </div>
-    </main>
+    </div>
   )
 }
 
+// @ts-ignore
+function ArrowLeftIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m12 19-7-7 7-7" />
+      <path d="M19 12H5" />
+    </svg>
+  )
+}

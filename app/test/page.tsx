@@ -2,11 +2,13 @@ import Image from 'next/image'
 import nytlogo from '../../public/nyt.png'
 import based from '../../public/based.png'
 
-export default function Component({
+export default function NewYorkTimes({
   headline,
+  image,
   description
 }: {
   headline: string
+  image?: string | null
   description: string
 }) {
   return (
@@ -35,7 +37,7 @@ export default function Component({
             // className="aspect-[2/1] overflow-hidden object-contain"
             height={300}
             width={800}
-            src={based}
+            src={image ?? based}
           />
           <div className="space-y-2 not-prose">
             <h2 className="text-3xl font-serif font-bold tracking-tight lg:text-4xl">

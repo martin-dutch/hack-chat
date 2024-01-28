@@ -21,6 +21,13 @@ const PollResults = ({nikki, trump}: {nikki: number; trump: number})=> {
         width: `${nikki}%`,
       }}
     />
+     <div
+      className="absolute top-0 left-0 h-full bg-red-500 rounded-full"
+      style={{
+        marginLeft: `${nikki}%`,
+        width: `${trump}%`,
+      }}
+    />
   </div>
   <div className="font-medium text-gray-600 dark:text-gray-400">{`${trump}% Donald Trump`}</div>
 </div></div>)

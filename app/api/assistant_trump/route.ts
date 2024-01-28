@@ -54,7 +54,7 @@ export async function POST(req: Request) {
 
       const summary = await getAssistantReply({
         assistantId: 'asst_8o36HjD0Gx2h6TaMwANwoRNQ',
-        content: `Niki Strategy: ${results[0].value} /n Trump Strategy: ${results[1].value}`
+        content: `Niki Strategy: ${results[0]?.value} /n Trump Strategy: ${results[1]?.value}`
       });
 
       const title = await getAssistantReply({

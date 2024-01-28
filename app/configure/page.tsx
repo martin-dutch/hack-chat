@@ -5,7 +5,7 @@
  */
 import { Slider } from '@/components/ui/slider'
 
-export default function Component({ guy }: { guy: string }) {
+export default function ConfigureComponent({ guy }: { guy: string }) {
   return (
     <div key="1" className="max-w-4xl mx-auto p-8 bg-white rounded-lg shadow">
       <div className="flex-col items-center space-x-2 mb-6">

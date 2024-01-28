@@ -27,6 +27,8 @@ import PollResults from './poll-results'
 import { useChatHook } from '@/lib/hooks/use-chat'
 import { useAuth } from '@/lib/hooks/use-auth'
 import Timer from './timer'
+import NewYorkTimes from '@/app/test/page'
+import Toolbar from './toolbar'
 
 const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
 export interface ChatProps extends React.ComponentProps<'div'> {
@@ -48,9 +50,9 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
   const currentUrl = window.location.href;
   const urlParams = new URLSearchParams(new URL(currentUrl).search);
 
-const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest Primaryt polls and says she is horrible!'
+const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest Primary polls and says she is horrible!'
 
-  // const  newsTitle = param.get('newsTitle') ?? 'Trump slams Haley in the latest Primaryt polls and says she is horrible!'
+  // const  newsTitle = param.get('newsTitle') ?? 'Trump slams Haley in the latest Primary polls and says she is horrible!'
 
   const [tick, setTick] = useState(0);
 
@@ -103,11 +105,11 @@ const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest
     const showNewsArticle = chat?.articles[round] != null && chat?.articles[round]?.text != null
     const news: {
       title: string;
-      date: string;
+      image: string;
       content: string;
     } = {
       title: chat?.articles[round]?.title ?? '',
-      date: (Date.now().toString()),
+      image: chat?.articles[round]?.image ?? '',
       content: chat?.articles[round]?.text ?? ''
     }
 
@@ -137,11 +139,12 @@ const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest
     
   return (
     <>
+      <Toolbar title={round === 0 ? newsTitle : `Round ${round}`} />
       <div className={cn('pb-[200px] pt-4 md:pt-10', className)}>
         {showPoll ? <div>
           {
             chat?.articles.map((article, index) => {
-              return <PollResults key={index} nikki={article.resultsNikky ?? 50} trump={article.resultsTrump ?? 67}  />
+              return <PollResults key={index} nikki={article.resultsNikky ?? 50} trump={100 - (article.resultsNikky ?? 50)}  />
             })
           }
         </div> : showNewsArticle ? <>
@@ -149,22 +152,21 @@ const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest
           setRound((prev) => prev + 1)
           console.log('ROUND', round)
           }} />)}
-        <HandwrittenNewspaperArticle title={news.title}
-          date={news.date}
-          content={news.content}/> 
+        <NewYorkTimes headline={news.title}
+          image={news.image}
+          description={news.content}/> 
         </> : messages.length ? (
           <>
             <ChatList messages={messages} />
             <ChatScrollAnchor trackVisibility={isLoading} />
           </>
         ) : (
-          <HandwrittenNewspaperArticle title={newsTitle}
-          date={news.date}
-          content={`Trump argues that Haley is horrible and can not be trusted to lead the Republican party. The electoral landscape for the primaries is turning out to be a tough slugfest. Trump is ahead in every state, with astonishing leads in Texas (76%), Tennessee (80%), and a far smaller but still substantive lead in Vermont (47%). Meanwhile, Haley trails considerably everywhere but has slightly smaller margins to close in the likes of South Dakota (52% Trump), Vermont (47% Trump), and South Carolina (58% Trump).\n\nBoth candidates have different strategies. Haley has taken the gloves off, dubbing Trump “totally unhinged” and strategically focusing on states with smaller lead gaps — South Carolina, South Dakota, and Vermont. Herculean efforts are being made to resonate with potential swing voters and demographics dissatisfied with the current political discourse. However, her prior subtler tactics have not gathered enough momentum, and it remains to be seen whether this increased aggression will make a considerable dent in Trump's steady support.\n\nOn the flip side, Trump, playing to his numerical strengths, is reinforcing his strongholds — states like Florida, Texas, and Arizona — while simultaneously attempting to sway the swing states even further in his advantage. He's capitalizing on economic and immigration-centric messaging, leveraging his first-term achievements to appeal to America's primary concerns. \n\nWhile the financial race is neck-and-neck with campaigns, Trump lags slightly behind Haley regarding Super PAC spending. It's worthy to watch how these resources will be maneuvered in the coming weeks.\n\nGiven the current strategies and standings, Trump's position is robust. However, with volatile electoral landscapes, nothing is carved in stone. Haley might pick up speed if her aggressive approach pays off in the swing states while Trump's economy-centric narrative continues to resonate, posing solid conservation for his base. NF.\n`}/> 
+          <NewYorkTimes headline={newsTitle}
+          description={`Trump argues that Haley is horrible and can not be trusted to lead the Republican party. The electoral landscape for the primaries is turning out to be a tough slugfest. Trump is ahead in every state, with astonishing leads in Texas (76%), Tennessee (80%), and a far smaller but still substantive lead in Vermont (47%). Meanwhile, Haley trails considerably everywhere but has slightly smaller margins to close in the likes of South Dakota (52% Trump), Vermont (47% Trump), and South Carolina (58% Trump).\n\nBoth candidates have different strategies. Haley has taken the gloves off, dubbing Trump “totally unhinged” and strategically focusing on states with smaller lead gaps — South Carolina, South Dakota, and Vermont. Herculean efforts are being made to resonate with potential swing voters and demographics dissatisfied with the current political discourse. However, her prior subtler tactics have not gathered enough momentum, and it remains to be seen whether this increased aggression will make a considerable dent in Trump's steady support.\n\nOn the flip side, Trump, playing to his numerical strengths, is reinforcing his strongholds — states like Florida, Texas, and Arizona — while simultaneously attempting to sway the swing states even further in his advantage. He's capitalizing on economic and immigration-centric messaging, leveraging his first-term achievements to appeal to America's primary concerns. \n\nWhile the financial race is neck-and-neck with campaigns, Trump lags slightly behind Haley regarding Super PAC spending. It's worthy to watch how these resources will be maneuvered in the coming weeks.\n\nGiven the current strategies and standings, Trump's position is robust. However, with volatile electoral landscapes, nothing is carved in stone. Haley might pick up speed if her aggressive approach pays off in the swing states while Trump's economy-centric narrative continues to resonate, posing solid conservation for his base. NF.\n`}/> 
         )}
       </div>
 
-     { chat?.sideChats[round].nikiId && ( <SideChatPanel
+     { chat?.sideChats[round]?.nikiId && ( <SideChatPanel
        id={id}
        isLoading={isLoading}
        stop={stop}
@@ -177,7 +179,7 @@ const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest
         name='Nikki Haley'
         roundnumber={round}
         chatId={id}
-        threadId={chat?.sideChats[round].nikiId ?? ''}
+        threadId={chat?.sideChats[round]?.nikiId ?? ''}
        />)}
 
       {/* <ChatPanel
@@ -193,7 +195,7 @@ const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest
 
 
 
-{ chat?.sideChats[round].trumpId && (<SideChatPanel
+{ chat?.sideChats[round]?.trumpId && (<SideChatPanel
        id={id}
        isLoading={isLoading}
        stop={stop}
@@ -206,7 +208,7 @@ const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest
         name='Trump'
         roundnumber={round}
         chatId={id}
-        threadId={chat?.sideChats[round].trumpId ?? ''}
+        threadId={chat?.sideChats[round]?.trumpId ?? ''}
        />)}
 
       <Dialog open={previewTokenDialog} onOpenChange={setPreviewTokenDialog}>
