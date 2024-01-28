@@ -27,6 +27,7 @@ import PollResults from './poll-results'
 import { useChatHook } from '@/lib/hooks/use-chat'
 import { useAuth } from '@/lib/hooks/use-auth'
 import Timer from './timer'
+import { useSession } from 'next-auth/react'
 
 const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
 export interface ChatProps extends React.ComponentProps<'div'> {
@@ -43,6 +44,9 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
     'ai-token',
     null
   )
+
+  const auth = useAuth()
+
 
   const [tick, setTick] = useState(0);
 
@@ -85,7 +89,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
       chat,
       loading,
       error
-    } = useChatHook(id ?? '', '10762010' ?? '', tick)
+    } = useChatHook(id ?? '', auth?.user.id ?? '', tick)
 console.log('session?.user.id','10762010')
 console.log('chat Id ',id )
     console.log('chat dcsonfpiovnokn',chat)
