@@ -7,7 +7,7 @@ import { Slider } from '@/components/ui/slider'
 
 export default function ConfigureComponent({ guy }: { guy: string }) {
   return (
-    <div key="1" className="max-w-4xl mx-auto p-8 bg-white rounded-lg shadow">
+    <div key="1" className="max-w-4xl mx-auto my-auto flex p-8 bg-white rounded-lg shadow">
       <div className="flex-col items-center space-x-2 mb-6">
         <ArrowLeftIcon className="h-6 w-6 text-black mb-4" />
         <h1 className="text-2xl font-bold text-black">
