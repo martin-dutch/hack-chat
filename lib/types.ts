@@ -9,7 +9,9 @@ export interface Chat extends Record<string, any> {
   messages: Message[]
   sideChats: {
     trumpId: string;
+    trumpAdverseId: string;
     nikiId: string;
+    nikiAdverseId: string;
   }[]
   sharePath?: string
 }

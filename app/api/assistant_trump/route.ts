@@ -1,3 +1,4 @@
+import { getChat } from '@/app/actions';
 import { auth } from '@/auth';
 import OpenAI from 'openai';
 
@@ -9,26 +10,94 @@ const openai = new OpenAI({
 export async function POST(req: Request) {
   // const input = await req.json();
   
-  const userId = (await auth())?.user.id
+  const userId = (await auth())?.user.id ?? ''
+
+
   const {searchParams} = new URL(req.url);
-  const threadIdINput = searchParams.get('threadId') as string | undefined;
+  
+  
   const inputMessage = searchParams.get('message') as string | undefined;
+  const roundnumber = Number(searchParams.get('roundnumber')) ?? 0
+  const chatId = searchParams.get('chatId') as string | undefined;
 
-  // Create a thread if needed
-  const threadId = threadIdINput ?? (await openai.beta.threads.create({})).id;
+  
+  const niki = (searchParams.get('niki') as string) === 'niki'
 
-  console.log('threadId', threadId);
+  const chat = await getChat(chatId ?? '', userId)
+
+  const threadId = niki ? chat?.sideChats[roundnumber].nikiId : chat?.sideChats[roundnumber].trumpId
+  const adverseThreadId = niki ? chat?.sideChats[roundnumber].nikiAdverseId : chat?.sideChats[roundnumber].trumpAdverseId
+
+  // // Create a thread if needed
+  // const threadId = threadIdINput ?? (await openai.beta.threads.create({})).id;
+
+  // console.log('threadId', threadId);
 
   try {
-    const responseText = await getAssistantReply({
-      assistantId: 'asst_NMlfKjbsBEnZNsq4DHx0upWQ',
-      threadId,
-      content: inputMessage ?? ''
-    });
+    // const responseText = await getAssistantReply({
+    //   assistantId: 'asst_NMlfKjbsBEnZNsq4DHx0upWQ',
+    //   threadId,
+    //   content: inputMessage ?? ''
+    // });
 
-    console.log('responseText', JSON.stringify(responseText));
+    // console.log('responseText', JSON.stringify(responseText));
 
-    return new Response(JSON.stringify({ responseText }), {
+    // const actualText = responseText[0][0].text ?? 'no response'
+
+    let lastResponse = ''
+    let generatedResponses: string[] = [];
+    for (let i = 0; i < 3; i++) {
+
+      // Message to trump
+
+
+      const responseText = await getAssistantReply({
+        assistantId: niki ? 'asst_eeaOPQnAm8ZvMznbia73kVsf' : 'asst_1hZXnkQnGP0yt86buk3XeS8b',
+        threadId: threadId,
+        content: i === 0 ? (inputMessage ?? '') : `Criticism on last strategy: ${lastResponse}`
+      });
+  
+      console.log('responseText', JSON.stringify(responseText));
+  
+      const trumpResponse = responseText[0][0].text.value ?? 'no response'
+
+      const responseText1 = await getAssistantReply({
+        assistantId: niki ? 'asst_NMlfKjbsBEnZNsq4DHx0upWQ' :  'asst_arAjbxm7Z9UvAGV7hwylsBJi',
+        threadId: adverseThreadId,
+        content: `${niki ? 'Niki' : 'Trump'}: ${trumpResponse}`
+      });
+
+      lastResponse = responseText1[0][0].text.value ?? 'no response'
+      // Message to adversarial
+
+
+      // generatedResponses.push(actualText);
+    }
+
+    // CREATE summary of niki vs trump
+    // 
+
+    // const payload = {
+    //   id,
+    //   title,
+    //   userId,
+    //   createdAt,
+    //   path,
+    //   messages: [
+    //     ...messages,
+    //     {
+    //       content: completion,
+    //       role: 'assistant'
+    //     }
+    //   ]
+    // }
+    // await kv.hmset(`chat:${id}`, payload)
+    // await kv.zadd(`user:chat:${userId}`, {
+    //   score: createdAt,
+    //   member: `chat:${id}`
+    // })
+
+    return new Response(JSON.stringify({ generatedResponses : JSON.stringify(generatedResponses)}), {
       headers: { 'Content-Type': 'application/json' }
     });
   } catch {
@@ -37,6 +106,10 @@ export async function POST(req: Request) {
       headers: { 'Content-Type': 'application/json' }
     });
   }
+}
+
+async function doRunsWithStrats(){
+  
 }
 
 async function getAssistantReply({ assistantId, threadId, content }: {

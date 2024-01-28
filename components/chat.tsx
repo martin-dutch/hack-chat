@@ -122,6 +122,8 @@ console.log('chat Id ',id )
        setInput={setInput}
         start={true}
         name='Nikki Haley'
+        roundnumber={roundSelect}
+        chatId={id}
         threadId={chat?.sideChats[roundSelect].nikiId ?? ''}
        />)}
 
@@ -149,6 +151,8 @@ console.log('chat Id ',id )
        setInput={setInput}
         start={false}
         name='Trump'
+        roundnumber={roundSelect}
+        chatId={id}
         threadId={chat?.sideChats[roundSelect].trumpId ?? ''}
        />)}
 

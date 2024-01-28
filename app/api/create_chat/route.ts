@@ -61,44 +61,34 @@ export async function POST(req: Request) {
         sideChats: [
             {
                 trumpId: threadId1,
-                nikiId: threadId2
+                nikiId: threadId2,
+                trumpAdverseId: threadId11,
+                nikiAdverseId: threadId12
             },
             {
                 trumpId: threadId3,
-                nikiId: threadId4
+                nikiId: threadId4,
+                trumpAdverseId: threadId13,
+                nikiAdverseId: threadId14
             },
             {
                 trumpId: threadId5,
-                nikiId: threadId6
+                nikiId: threadId6,
+                trumpAdverseId: threadId15,
+                nikiAdverseId: threadId16
             },
             {
                 trumpId: threadId7,
-                nikiId: threadId8
+                nikiId: threadId8,
+                trumpAdverseId: threadId17,
+                nikiAdverseId: threadId18
             },
             {
                 trumpId: threadId9,
-                nikiId: threadId10
+                nikiId: threadId10,
+                trumpAdverseId: threadId19,
+                nikiAdverseId: threadId20
             },
-            {
-                trumpId: threadId11,
-                nikiId: threadId12
-            },
-            {
-                trumpId: threadId13,
-                nikiId: threadId14
-            },
-            {
-                trumpId: threadId15,
-                nikiId: threadId16
-            },
-            {
-                trumpId: threadId17,
-                nikiId: threadId18
-            },
-            {
-                trumpId: threadId19,
-                nikiId: threadId20
-            }
         ]
     }
     await kv.hmset(`chat:${id}`, payload)

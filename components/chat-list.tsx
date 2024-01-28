@@ -16,7 +16,7 @@ export function ChatList({ messages , size}: ChatList) {
   console.log('MESSAGES', messages)
 
   return (
-    <div className="relative mx-auto max-w-2xl px-4">
+    <div className="relative mx-auto max-w-2xl px-4 mx-8">
       {messages.map((message, index) => (
         <div key={index}>
           <ChatMessage message={message} size={size} />

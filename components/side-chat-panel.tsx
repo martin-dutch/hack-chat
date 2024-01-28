@@ -30,24 +30,33 @@ export interface ChatPanelProps
   title?: string
   start?: boolean
   name?: string
+  chatId?: string
   threadId?: string
+  roundnumber?: number
 }
 export function SideChatPanel({
   messages,
   name,
   start,
-  threadId
+  threadId,
+  chatId,
+  roundnumber
 }: ChatPanelProps) {
   const [shareDialogOpen, setShareDialogOpen] = React.useState(false)
   const [chatMessages, setChatMessages] = React.useState<OpenAI.Beta.Threads.Messages.ThreadMessage[]>([])
 
   console.log('CHECL THIS THREAD ID', threadId)
 
+  // const inputMessage = searchParams.get('message') as string | undefined;
+  //   const roundnumber = Number(searchParams.get('roundnumber')) ?? 0
+  //   const chatId = searchParams.get('chatId') as string | undefined;
+  //   const niki = searchParams.get('niki') as string === 'niki'
+
   React.useEffect(() => {
     const fetchMessages = async () => {
       try {
         console.log('threadId',threadId)
-        const response = await axios.get(`/api/assistant_get_messages?threadId=${threadId}`)
+        const response = await axios.get(`/api/assistant_get_messages?niki=${start ? 'niki' : 'trump'}&roundnumber=${roundnumber}&chatId=${chatId}`)
         console.log('response.data', JSON.stringify(response.data.messages))
         setChatMessages(response.data.messages)
       } catch (error) {
@@ -57,6 +66,10 @@ export function SideChatPanel({
 
     if(threadId != null){
       fetchMessages()
+      const intervalId = setInterval(fetchMessages, 2000); // Polls every 2 seconds
+
+      // Clean up function to clear the interval when the component unmounts
+      return () => clearInterval(intervalId);
     }
     
   }, [threadId])
@@ -69,12 +82,12 @@ export function SideChatPanel({
   })))
 
   return (
-    <Card className={`w-1/5 fixed ${start ? 'left' : 'right'}-0 top-10 bottom-10 flex flex-col m-4 mt-10`}>
+    <Card className={`w-1/5 fixed ${start ? 'left' : 'right'}-0 inset-y-10 flex flex-col m-4 mt-10`}>
       <CardHeader className="border-b p-4">
         <CardTitle className="text-lg font-bold">{name}</CardTitle>
       </CardHeader>
       <ScrollArea className="flex-1 p-4">
-      <div className="flex items-center justify-center h-12">
+      <div className="flex">
   {chatMessages && (
     <ChatList 
     size="small"

@@ -1,5 +1,7 @@
 import OpenAI from 'openai'
 import Request from 'next'
+import { auth } from '@/auth';
+import { getChat } from '@/app/actions';
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY || ''
@@ -8,16 +10,45 @@ const openai = new OpenAI({
 export async function GET(req: Request) {
     const {searchParams} = new URL(req.url);
 
-    const threadId = searchParams.get('threadId') as string | undefined;
-    console.log('threadId', threadId)
-    if(threadId == null) {
+    // const threadIdINput = searchParams.get('threadId') as string | undefined;
+    const roundnumber = Number(searchParams.get('roundnumber')) ?? 0
+    const chatId = searchParams.get('chatId') as string | undefined;
+    const niki = (searchParams.get('niki') as string) === 'niki'
+
+
+    // console.log('roundnumber', roundnumber)
+    // console.log('chatId', chatId)
+    // console.log('searchParams.ge', searchParams.get('niki') as string)
+    // console.log('niki', niki)
+
+    const userId = (await auth())?.user.id ?? ''
+
+    const chat = await getChat(chatId ?? '', userId)
+
+    const threadMainId = niki ? chat?.sideChats[roundnumber].nikiId : chat?.sideChats[roundnumber].trumpId
+    const threadAdverseId = niki ? chat?.sideChats[roundnumber].nikiAdverseId : chat?.sideChats[roundnumber].trumpAdverseId
+
+    // const threadId = chat.sideChats[roundnumber].trumpId
+
+    // const threadId = searchParams.get('threadId') as string | undefined;
+    // console.log('threadId', threadId)
+    if(threadMainId == null || threadAdverseId == undefined) {
         return new Response(JSON.stringify({ messages: [] }), {
             headers: { 'Content-Type': 'application/json' }
         });
     }
-    console.log('lets try!', threadId)
-    const messages = (await openai.beta.threads.messages.list(threadId)).data
-    console.log('messages',JSON.stringify(messages))
+
+    const messages = [...(await openai.beta.threads.messages.list(threadMainId)).data.filter((message) => message.role === 'assistant').map((mess) => ({...mess, role: 'user'})), ...(await openai.beta.threads.messages.list(threadAdverseId)).data.filter((message) => message.role === 'assistant')].sort((a, b) => a.created_at - b.created_at)
+
+    // chatMessages?.map((message) => ({
+    //     id: message.id,
+    //     content: message.content[0].text.value,
+    //     role: message.role
+    //   })))
+
+    // console.log('lets try!', threadId)
+    
+    // console.log('messages',JSON.stringify(messages))
     return new Response(JSON.stringify({ messages: messages }), {
         headers: { 'Content-Type': 'application/json' }
     });

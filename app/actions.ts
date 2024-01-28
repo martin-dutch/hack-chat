@@ -31,9 +31,9 @@ export async function getChats(userId?: string | null) {
 }
 
 export async function getChat(id: string, userId: string) {
-  console.log('GETTING CHAT', id, userId)
+  // console.log('GETTING CHAT', id, userId)
   const chat = await kv.hgetall<Chat>(`chat:${id}`)
-  console.log('GOT CHAT', chat)
+  // console.log('GOT CHAT', chat)
 
   if (!chat || (userId && chat.userId !== userId)) {
     return null
