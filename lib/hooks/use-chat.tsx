@@ -20,6 +20,7 @@ export function useChatHook(id: string, userId: string, refresh: number) {
         }
       }
   
+      console.log('FETCHING DATA')
       fetchChat()
     }, [id, userId, refresh])
   

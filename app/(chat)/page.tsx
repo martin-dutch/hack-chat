@@ -34,7 +34,7 @@ export default function IndexPage() {
         // Do something with the data
         // Then navigate to a different page
         console.log('data', data)
-        window.location.href = `/chat/${id}`
+        window.location.href = `/chat/${id}?newsTitle=Trump slams Haley in the latest Primaryt polls and says she is horrible!`
       })
       .catch(error => {
         console.error('Error:', error)

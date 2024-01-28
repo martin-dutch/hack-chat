@@ -2,7 +2,7 @@
 
 import { useChat, type Message } from 'ai/react'
 
-import { cn } from '@/lib/utils'
+import { cn, getRandomNumberInRange } from '@/lib/utils'
 import { ChatList } from '@/components/chat-list'
 import { ChatPanel } from '@/components/chat-panel'
 import { EmptyScreen } from '@/components/empty-screen'
@@ -20,7 +20,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { toast } from 'react-hot-toast'
-import { usePathname, useRouter } from 'next/navigation'
+import { useParams, usePathname, useRouter } from 'next/navigation'
 import { SideChatPanel } from './side-chat-panel'
 import HandwrittenNewspaperArticle from './newspaper'
 import PollResults from './poll-results'
@@ -37,12 +37,20 @@ export interface ChatProps extends React.ComponentProps<'div'> {
 export function Chat({ id, initialMessages, className }: ChatProps) {
   const router = useRouter()
   const path = usePathname()
+  const param = useParams()
   // const roundSelect = 0
   const [round, setRound] = useState(0)
   const [previewToken, setPreviewToken] = useLocalStorage<string | null>(
     'ai-token',
     null
   )
+
+  const currentUrl = window.location.href;
+  const urlParams = new URLSearchParams(new URL(currentUrl).search);
+
+const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest Primaryt polls and says she is horrible!'
+
+  // const  newsTitle = param.get('newsTitle') ?? 'Trump slams Haley in the latest Primaryt polls and says she is horrible!'
 
   const [tick, setTick] = useState(0);
 
@@ -86,8 +94,8 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
       loading,
       error
     } = useChatHook(id ?? '', '10762010' ?? '', tick)
-console.log('session?.user.id','10762010')
-console.log('chat Id ',id )
+    console.log('session?.user.id','10762010')
+    console.log('chat Id ',id )
     console.log('chat dcsonfpiovnokn',chat)
 
     
@@ -117,7 +125,7 @@ console.log('chat Id ',id )
     useEffect(() => {
       if (hasMounted.current) {
         console.log('FETCHING')
-        fetch(`http://localhost:3000/api/assistant_trump?message=Niki Haley amps up her attacks on Trump, calling him totally unhinged.&roundnumber=${round}&chatId=${id}&niki=trump`, {
+        fetch(`http://localhost:3000/api/assistant_trump?message=${newsTitle}&roundnumber=${round}&chatId=${id}&niki=trump`, {
           method: 'POST',
           redirect: 'follow'
         })
@@ -133,7 +141,7 @@ console.log('chat Id ',id )
         {showPoll ? <div>
           {
             chat?.articles.map((article, index) => {
-              return <PollResults key={index} progress={article.score ?? 50}  />
+              return <PollResults key={index} nikki={article.resultsNikky ?? 50} trump={article.resultsTrump ?? 67}  />
             })
           }
         </div> : showNewsArticle ? <>
@@ -150,7 +158,9 @@ console.log('chat Id ',id )
             <ChatScrollAnchor trackVisibility={isLoading} />
           </>
         ) : (
-          <EmptyScreen setInput={setInput} />
+          <HandwrittenNewspaperArticle title={newsTitle}
+          date={news.date}
+          content={`Trump argues that Haley is horrible and can not be trusted to lead the Republican party. The electoral landscape for the primaries is turning out to be a tough slugfest. Trump is ahead in every state, with astonishing leads in Texas (76%), Tennessee (80%), and a far smaller but still substantive lead in Vermont (47%). Meanwhile, Haley trails considerably everywhere but has slightly smaller margins to close in the likes of South Dakota (52% Trump), Vermont (47% Trump), and South Carolina (58% Trump).\n\nBoth candidates have different strategies. Haley has taken the gloves off, dubbing Trump “totally unhinged” and strategically focusing on states with smaller lead gaps — South Carolina, South Dakota, and Vermont. Herculean efforts are being made to resonate with potential swing voters and demographics dissatisfied with the current political discourse. However, her prior subtler tactics have not gathered enough momentum, and it remains to be seen whether this increased aggression will make a considerable dent in Trump's steady support.\n\nOn the flip side, Trump, playing to his numerical strengths, is reinforcing his strongholds — states like Florida, Texas, and Arizona — while simultaneously attempting to sway the swing states even further in his advantage. He's capitalizing on economic and immigration-centric messaging, leveraging his first-term achievements to appeal to America's primary concerns. \n\nWhile the financial race is neck-and-neck with campaigns, Trump lags slightly behind Haley regarding Super PAC spending. It's worthy to watch how these resources will be maneuvered in the coming weeks.\n\nGiven the current strategies and standings, Trump's position is robust. However, with volatile electoral landscapes, nothing is carved in stone. Haley might pick up speed if her aggressive approach pays off in the swing states while Trump's economy-centric narrative continues to resonate, posing solid conservation for his base. NF.\n`}/> 
         )}
       </div>
 

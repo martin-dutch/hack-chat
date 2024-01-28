@@ -17,7 +17,8 @@ export interface Chat extends Record<string, any> {
     title?: string;
     image?: string;
     text?: string;
-    score?: number;
+    resultsNikky?: number;
+    resultsTrump?: number;
   }[];
   sharePath?: string
 }
