@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Chat } from '../types'
 
 // Define the hook
-export function useChatHook(id: string, userId: string) {
+export function useChatHook(id: string, userId: string, refresh: number) {
     const [chat, setChat] = useState<Chat | null>(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<true | null>(null)
@@ -21,7 +21,7 @@ export function useChatHook(id: string, userId: string) {
       }
   
       fetchChat()
-    }, [id, userId])
+    }, [id, userId, refresh])
   
     return { chat, loading, error }
   }

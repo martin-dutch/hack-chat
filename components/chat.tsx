@@ -16,7 +16,7 @@ import {
   DialogHeader,
   DialogTitle
 } from '@/components/ui/dialog'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { toast } from 'react-hot-toast'
@@ -26,6 +26,7 @@ import HandwrittenNewspaperArticle from './newspaper'
 import PollResults from './poll-results'
 import { useChatHook } from '@/lib/hooks/use-chat'
 import { useAuth } from '@/lib/hooks/use-auth'
+import Timer from './timer'
 
 const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
 export interface ChatProps extends React.ComponentProps<'div'> {
@@ -36,10 +37,25 @@ export interface ChatProps extends React.ComponentProps<'div'> {
 export function Chat({ id, initialMessages, className }: ChatProps) {
   const router = useRouter()
   const path = usePathname()
+  // const roundSelect = 0
+  const [round, setRound] = useState(0)
   const [previewToken, setPreviewToken] = useLocalStorage<string | null>(
     'ai-token',
     null
   )
+
+  const [tick, setTick] = useState(0);
+
+  useEffect(() => {
+    // Set up a timer to update the state every 10 seconds
+    const interval = setInterval(() => {
+      setTick(tick => tick + 1); // Update the state to trigger a rerender
+    }, 10000);
+
+    // Cleanup function to clear the timer
+    return () => clearInterval(interval);
+  }, []); // Empty dependency array ensures this effect runs only once on mount
+
   // const
   //   session
   //  = useAuth()
@@ -69,20 +85,22 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
       chat,
       loading,
       error
-    } = useChatHook(id ?? '', '10762010' ?? '')
+    } = useChatHook(id ?? '', '10762010' ?? '', tick)
 console.log('session?.user.id','10762010')
 console.log('chat Id ',id )
     console.log('chat dcsonfpiovnokn',chat)
 
-    const showNewsArticle = true
+    
+
+    const showNewsArticle = chat?.articles[round] != null && chat?.articles[round]?.text != null
     const news: {
       title: string;
       date: string;
       content: string;
     } = {
-      title: `Nikki Haley: Biden's Afghanistan withdrawal is a disaster that didn't have to happen`,
-      date: 'Aug. 17, 2021',
-      content: `The Biden administration’s botched withdrawal from Afghanistan is a disaster that didn’t have to happen. It’s a failure of leadership that will have far-reaching consequences for the United States and our allies.`
+      title: chat?.articles[round]?.title ?? '',
+      date: (Date.now().toString()),
+      content: chat?.articles[round]?.text ?? ''
     }
 
     const pollResults: {
@@ -92,16 +110,41 @@ console.log('chat Id ',id )
       left: 40,
       right: 60
     }
-    const showPoll = false;
-    const roundSelect = 0
+    const showPoll = !showNewsArticle && round > 0;
+
+    const hasMounted = useRef(false);
+
+    useEffect(() => {
+      if (hasMounted.current) {
+        console.log('FETCHING')
+        fetch(`http://localhost:3000/api/assistant_trump?message=Niki Haley amps up her attacks on Trump, calling him totally unhinged.&roundnumber=${round}&chatId=${id}&niki=trump`, {
+          method: 'POST',
+          redirect: 'follow'
+        })
+        console.log('ASYNC DONE')
+      } else {
+        hasMounted.current = true;
+      }
+    }, [round])
+    
   return (
     <>
       <div className={cn('pb-[200px] pt-4 md:pt-10', className)}>
-        {showPoll ? <PollResults /> : showNewsArticle ? <HandwrittenNewspaperArticle 
-          title={news.title}
+        {showPoll ? <div>
+          {
+            chat?.articles.map((article, index) => {
+              return <PollResults key={index} progress={article.score ?? 50}  />
+            })
+          }
+        </div> : showNewsArticle ? <>
+        {showNewsArticle && (<Timer onTimerComplete={() => {
+          setRound((prev) => prev + 1)
+          console.log('ROUND', round)
+          }} />)}
+        <HandwrittenNewspaperArticle title={news.title}
           date={news.date}
-          content={news.content}
-        />  :messages.length ? (
+          content={news.content}/> 
+        </> : messages.length ? (
           <>
             <ChatList messages={messages} />
             <ChatScrollAnchor trackVisibility={isLoading} />
@@ -111,7 +154,7 @@ console.log('chat Id ',id )
         )}
       </div>
 
-     { chat?.sideChats[roundSelect].nikiId && ( <SideChatPanel
+     { chat?.sideChats[round].nikiId && ( <SideChatPanel
        id={id}
        isLoading={isLoading}
        stop={stop}
@@ -122,9 +165,9 @@ console.log('chat Id ',id )
        setInput={setInput}
         start={true}
         name='Nikki Haley'
-        roundnumber={roundSelect}
+        roundnumber={round}
         chatId={id}
-        threadId={chat?.sideChats[roundSelect].nikiId ?? ''}
+        threadId={chat?.sideChats[round].nikiId ?? ''}
        />)}
 
       {/* <ChatPanel
@@ -140,7 +183,7 @@ console.log('chat Id ',id )
 
 
 
-{ chat?.sideChats[roundSelect].trumpId && (<SideChatPanel
+{ chat?.sideChats[round].trumpId && (<SideChatPanel
        id={id}
        isLoading={isLoading}
        stop={stop}
@@ -151,9 +194,9 @@ console.log('chat Id ',id )
        setInput={setInput}
         start={false}
         name='Trump'
-        roundnumber={roundSelect}
+        roundnumber={round}
         chatId={id}
-        threadId={chat?.sideChats[roundSelect].trumpId ?? ''}
+        threadId={chat?.sideChats[round].trumpId ?? ''}
        />)}
 
       <Dialog open={previewTokenDialog} onOpenChange={setPreviewTokenDialog}>

@@ -57,6 +57,7 @@ export async function POST(req: Request) {
         userId,
         createdAt,
         path,
+        articles: [],
         messages: [],
         sideChats: [
             {

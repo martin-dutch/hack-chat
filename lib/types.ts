@@ -12,7 +12,13 @@ export interface Chat extends Record<string, any> {
     trumpAdverseId: string;
     nikiId: string;
     nikiAdverseId: string;
-  }[]
+  }[];
+  articles: {
+    title?: string;
+    image?: string;
+    text?: string;
+    score?: number;
+  }[];
   sharePath?: string
 }
 
