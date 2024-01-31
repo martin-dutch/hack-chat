@@ -5,6 +5,10 @@ import { USER_ID, getRandomNumberInRange } from '@/lib/utils';
 import { kv } from '@vercel/kv';
 import OpenAI from 'openai';
 
+export const config = {
+  maxDuration: 300, // 300 seconds
+};
+
 const newsImages = [
 "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/newscms/2018_41/2598091/181009-nikki-haley-donald-trump-un-ew-1220p.jpg",
 "https://cdn.cnn.com/cnnnext/dam/assets/160113122919-nikki-haley-donald-trump-composite-super-tease.jpg",
