@@ -25,7 +25,7 @@ export default function Component() {
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
             Top Election Stories
           </h1>
-          <p className="mx-auto max-w-[700px] text-gray-500 my-5 md:text-xl dark:text-gray-400">
+          <p className="mx-auto max-w-[700px] text-gray-500 my-5 md:text-xl ">
             Click on a story to start the simulation.
           </p>
         </div>

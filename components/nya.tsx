@@ -26,13 +26,13 @@ export default function NewYorkTimes({
           {/* <h1 className="text-4xl font-serif font-extrabold tracking-tight lg:text-5xl">
             The New York Times
           </h1> */}
-          <p className="text-gray-500 dark:text-gray-400">
+          <p className="text-gray-500 ">
             January 28, 2024 - Monday Edition
           </p>
         </div>
       </header>
       <main className="flex flex-col space-y-8 w-full max-w-2xl mt-8">
-        <article className="prose prose-gray max-w-none dark:prose-invert">
+        <article className="prose prose-gray max-w-none ">
           <img
             alt="New York Times Logo"
             // className="aspect-[2/1] overflow-hidden object-contain"
@@ -44,7 +44,7 @@ export default function NewYorkTimes({
             <h2 className="text-3xl font-serif font-bold tracking-tight lg:text-4xl">
               {headline || 'Trump destroys Deep State puppet Nikki to MAGA!'}
             </h2>
-            <p className="text-gray-500 dark:text-gray-400">By Vox Populi</p>
+            <p className="text-gray-500 ">By Vox Populi</p>
           </div>
           <p>
             {description ||

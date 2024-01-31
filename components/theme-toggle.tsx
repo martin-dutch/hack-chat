@@ -16,15 +16,10 @@ export function ThemeToggle() {
       size="icon"
       onClick={() => {
         startTransition(() => {
-          setTheme(theme === 'light' ? 'dark' : 'light')
+          setTheme('light')
         })
       }}
     >
-      {!theme ? null : theme === 'dark' ? (
-        <IconMoon className="transition-all" />
-      ) : (
-        <IconSun className="transition-all" />
-      )}
       <span className="sr-only">Toggle theme</span>
     </Button>
   )

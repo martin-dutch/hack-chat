@@ -9,15 +9,15 @@ export default function IndexPage() {
 
   return (
     <>
-      <Toolbar title="COGNOSCENT.AI" mainPage/>
-      <main className="flex flex-col items-center justify-center h-screen   dark:bg-gray-900">
+      <Toolbar title="COGNOSCENT.NEWS" mainPage/>
+      <main className="flex flex-col items-center justify-center h-scree">
       
-      {/* <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-8">COGNISANT.AI</h1> */}
+      {/* <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">COGNISANT.AI</h1> */}
       <div className=" flex fixed  justify-center">
         <Link href={'news'}>
           {/* Replacing the video tag with an img tag for the GIF */}
-          <h1 className="text-7xl font-bold text-center text-gray-800 dark:text-gray-200 mb-8 fixed left-1/2 top-[30%] -translate-x-1/2 pr-[700px]">HYPERINTELLIGENCE</h1>
-          <h1 className="text-7xl font-bold text-center text-gray-800 dark:text-gray-200 mb-8 fixed left-1/2 top-[50%] -translate-x-1/2 pl-[700px] whitespace-nowrap">FOR DEMOCRACY</h1>
+          <h1 className="text-7xl font-bold text-center text-gray-800 mb-8 fixed left-1/2 top-[30%] -translate-x-1/2 pr-[700px]">HYPERINTELLIGENCE</h1>
+          <h1 className="text-7xl font-bold text-center text-gray-800 mb-8 fixed left-1/2 top-[50%] -translate-x-1/2 pl-[700px] whitespace-nowrap">FOR DEMOCRACY</h1>
           <img
             alt="Hero Image"
             className="mx-auto w-3/10 h-5/10"

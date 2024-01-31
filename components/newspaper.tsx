@@ -9,7 +9,7 @@ const HandwrittenNewspaperArticle = ({ title, date, content }: {
 }) => {
     return (
         <main className="flex flex-col items-center justify-center px-4 ">
-      <article className="prose prose-gray mx-auto dark:prose-invert">
+      <article className="prose prose-gray mx-auto ">
         {/* <figure>
           <img
             alt="Cover image"
@@ -48,7 +48,7 @@ const HandwrittenNewspaperArticle = ({ title, date, content }: {
               width={50}
             />
             <div>
-                <p className="text-gray-500 dark:text-gray-400">By Cognoscent.ai</p>
+                <p className="text-gray-500">By Cognoscent.news</p>
               <p className="font-bold">Martin and Jose</p>
               
             </div>
