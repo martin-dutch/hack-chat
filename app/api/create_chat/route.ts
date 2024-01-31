@@ -8,10 +8,8 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY || ''
   })
 
-  export const config = {
-    maxDuration: 300, // 300 seconds
-  };
-  
+export const maxDuration = 300
+
 
 export async function POST(req: Request) {
     // const {searchParams} = new URL(req.url);
