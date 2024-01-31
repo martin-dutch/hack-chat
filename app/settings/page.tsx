@@ -11,7 +11,7 @@ import { Slider } from '@/components/ui/slider'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-export default function ConfigureComponent({ guy }: { guy: string }) {
+export default function ConfigureComponent() {
 
   const currentUrl = window.location.href;
   const urlParams = new URLSearchParams(new URL(currentUrl).search);

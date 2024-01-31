@@ -80,16 +80,27 @@ export function SideChatPanel({
 
   React.useEffect(() => {
     const container = containerRef.current;
-    container.scrollTop = container.scrollHeight;
   }, [chatMessages.length]); // Dependency array, in this case, the content that changes
 
 
   console.log('JSONFIEd' , JSON.stringify(chatMessages))
-  console.log('chatMessages TRANSPOSE', chatMessages?.map((message) => ({
-    id: message.id,
-    content: message.content[0].text.value,
-    role: message.role
-  })))
+  // console.log('chatMessages TRANSPOSE', chatMessages?.map((message) => ({
+  //   id: message.id,
+  //   content: message.content[0].text.value,
+  //   role: message.role
+  // })))
+
+  const text = chatMessages.map((imageOrText) => {
+    return imageOrText.content.map((content) => {
+      if (content.type === "text") {
+        const parsed =  content as  OpenAI.Beta.Threads.Messages.MessageContentText
+        return parsed.text.value
+      } else {
+        const parsed =  content as  OpenAI.Beta.Threads.Messages.MessageContentImageFile
+        return parsed.image_file.file_id
+      }
+    }).join(' ')
+  }).join('\n')
 
   return (
     <Card className={`w-1/4 fixed ${start ? 'left' : 'right'}-0 inset-y-20 flex flex-col m-4 mt-10 px-1`}>
@@ -103,7 +114,7 @@ export function SideChatPanel({
     size="small"
       messages={chatMessages?.map((message) => ({
         id: message.id,
-        content: message.content[0].text.value,
+        content: text,
         role: message.role
       })) ?? []} 
     />

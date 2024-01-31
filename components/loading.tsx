@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// @ts-ignore
 import Lottie from 'react-lottie';
 import * as animationData from 'public/loading.json';
 

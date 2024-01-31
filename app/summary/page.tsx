@@ -20,7 +20,6 @@ import { useEffect, useRef, useState } from 'react'
 import { useParams, usePathname, useRouter } from 'next/navigation'
 import { useChatHook } from '@/lib/hooks/use-chat'
 import { useAuth } from '@/lib/hooks/use-auth'
-import NewYorkTimes from '@/app/test/page'
 
 const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
 export interface ChatProps extends React.ComponentProps<'div'> {
@@ -37,6 +36,7 @@ import { Chat } from '@/components/chat'
 import { USER_ID } from '@/lib/utils'
 import PollResults from '@/components/poll-results'
 import Toolbar from '@/components/toolbar'
+import NewYorkTimes from '@/components/nya'
 
 export interface ChatPageProps {
   params: {

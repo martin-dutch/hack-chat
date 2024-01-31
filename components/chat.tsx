@@ -27,8 +27,8 @@ import PollResults from './poll-results'
 import { useChatHook } from '@/lib/hooks/use-chat'
 import { useAuth } from '@/lib/hooks/use-auth'
 import Timer from './timer'
-import NewYorkTimes from '@/app/test/page'
 import Toolbar from './toolbar'
+import NewYorkTimes from './nya'
 
 const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
 export interface ChatProps extends React.ComponentProps<'div'> {

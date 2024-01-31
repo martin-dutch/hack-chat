@@ -55,10 +55,17 @@ export async function POST(req: Request) {
     )]);
 
     console.log('results', JSON.stringify(results))
+
+    const returnValues = results.map((result) => {
+      if (result.status === 'fulfilled') {
+        return result.value
+      } else {
+        return ''
+      }})
   
       const summary = await getAssistantReply({
         assistantId: 'asst_8o36HjD0Gx2h6TaMwANwoRNQ',
-        content: `Niki Strategy: ${results[0]?.value} /n Trump Strategy: ${results[1]?.value}`
+        content: `Niki Strategy: ${returnValues[0]} /n Trump Strategy: ${returnValues[1]}`
       });
 
       const summaryText = summary[0].map((imageOrText) => {
@@ -186,7 +193,7 @@ function getResultsNikky(results: string): number {
   }
 }
 
-export function getResultsTrump(results: any): number {
+function getResultsTrump(results: any): number {
   try {
     return parseInt(results.split(' ')[1]) ?? getRandomNumberInRange(43, 50);
   } catch (error) {
@@ -238,8 +245,18 @@ async function doRunsWithStrats({
       });
   
       console.log('responseText', JSON.stringify(responseText));
+
+      const lastTrumpResponseText = responseText[0].map((imageOrText) => {
+        if (imageOrText.type === "text") {
+          const parsed =  imageOrText as  OpenAI.Beta.Threads.Messages.MessageContentText
+          return parsed.text.value
+        } else {
+          const parsed =  imageOrText as  OpenAI.Beta.Threads.Messages.MessageContentImageFile
+          return parsed.image_file.file_id
+        }
+      }).join('\n')
   
-      lastTrumpResponse = responseText[0][0].text.value ?? 'no response'
+      lastTrumpResponse = lastTrumpResponseText
 
       if(i === 2) continue;
 
@@ -249,7 +266,17 @@ async function doRunsWithStrats({
         content: `${niki ? 'Niki' : 'Trump'}: ${lastTrumpResponse}`
       });
 
-      lastResponse = responseText1[0][0].text.value ?? 'no response'
+      const responseText1Text = responseText[0].map((imageOrText) => {
+        if (imageOrText.type === "text") {
+          const parsed =  imageOrText as  OpenAI.Beta.Threads.Messages.MessageContentText
+          return parsed.text.value
+        } else {
+          const parsed =  imageOrText as  OpenAI.Beta.Threads.Messages.MessageContentImageFile
+          return parsed.image_file.file_id
+        }
+      }).join('\n')
+
+      lastResponse = responseText1Text
       // Message to adversarial
 
 

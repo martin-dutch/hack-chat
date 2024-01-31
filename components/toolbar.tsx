@@ -30,7 +30,7 @@ export default function Toolbar({ title, mainPage, onCallback }: {title: string,
   )
 }
 
-function ArrowLeftIcon(props) {
+function ArrowLeftIcon(props: any) {
   return (
     <svg
       {...props}
@@ -51,7 +51,7 @@ function ArrowLeftIcon(props) {
 }
 
 
-function BellIcon(props) {
+function BellIcon(props: any) {
   return (
     <svg
       {...props}
@@ -72,7 +72,7 @@ function BellIcon(props) {
 }
 
 
-function UserIcon(props) {
+function UserIcon(props: any) {
   return (
     <svg
       {...props}

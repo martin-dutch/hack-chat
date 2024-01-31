@@ -1,3 +1,6 @@
+"use client"
+
+
 import { type Message } from 'ai'
 
 import { Separator } from '@/components/ui/separator'
@@ -14,17 +17,9 @@ export function ChatList({ messages , size}: ChatList) {
   //   return null
   // }
 
-  console.log('MESSAGES', messages)
-
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    container.scrollTop = container.scrollHeight;
-  }, [messages.length]); // Dependency array, in this case, the content that changes
 
   return (
-    <div className="relative mx-auto max-w-2xl px-4 mx-8" ref={containerRef} >
+    <div className="relative mx-auto max-w-2xl px-4" >
       {messages.map((message, index) => (
         <div key={index}>
           <ChatMessage message={message} size={size} />
