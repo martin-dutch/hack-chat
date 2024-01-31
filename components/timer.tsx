@@ -7,7 +7,7 @@ type TimerComponentProps = {
 };
 
 const Timer: FC<TimerComponentProps> = ({ onTimerComplete }) => {
-  const [timeLeft, setTimeLeft] = useState(10);
+  const [timeLeft, setTimeLeft] = useState(20);
 
   useEffect(() => {
     if (timeLeft === 0) {
@@ -23,12 +23,12 @@ const Timer: FC<TimerComponentProps> = ({ onTimerComplete }) => {
   }, [timeLeft, onTimerComplete]);
 
   return (
-    <div className="flex items-center justify-center space-x-4 pt-6 max-w-4xl mx-auto">
+    <div className="flex items-center justify-center space-x-4 pt-6 max-w-2xl mx-auto">
       <div className="w-full h-2 bg-gray-200 rounded-full mb-3">
         <div
           className="h-full bg-gray-600 rounded-full timer-bar" // Add the 'timer-bar' class
           style={{
-            width: `${(timeLeft / 10) * 100}%`,
+            width: `${(timeLeft / 20) * 100}%`,
           }}
         />
       </div>

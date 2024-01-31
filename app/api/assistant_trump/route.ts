@@ -100,7 +100,7 @@ console.log('summa', JSON.stringify(summary))
       articles: (chat?.articles ?? []).concat([{
         title: getTitle(title),
         text: getText(summary),
-        image: '',
+        image: 'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/newscms/2018_41/2598091/181009-nikki-haley-donald-trump-un-ew-1220p.jpg',
         resultsNikky: getResultsNikky(resultsPoll),
         resultsTrump: getResultsTrump(resultsPoll)
       }])

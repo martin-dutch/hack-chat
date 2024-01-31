@@ -14,7 +14,7 @@ export default function ConfigureComponent({ guy }: { guy: string }) {
   return (
     <>
     <Toolbar title="Configure" />
-    <div key="1" className="max-w-4xl mx-auto my-auto  p-8 shadow">
+    <div key="1" className="w-3/4 mx-auto my-auto  p-8">
       {/* <div className="flex-col items-center space-x-2 mb-6">
         <ArrowLeftIcon className="h-6 w-6 text-black mb-4" />
         <h1 className="text-2xl font-bold text-black">
@@ -24,17 +24,23 @@ export default function ConfigureComponent({ guy }: { guy: string }) {
       </div> */}
       <div className="space-y-8">
         <div>
+        <div className='flex text-align'>
+            <h1 className="text-2xl font-bold text-black mx-auto">Populism</h1>
+          </div>
           <div className="flex justify-between mb-2">
             <span className="text-sm text-black">Purely fact-based</span>
-            <span className="text-sm text-black">Populism</span>
+            <span className="text-sm text-black">Unrealistic</span>
           </div>
           <Slider className="w-full bg-gray-200" defaultValue={[50]} />
         </div>
         <div>
+          <div className='flex text-align'>
+            <h1 className="text-2xl font-bold text-black mx-auto">Tone</h1>
+          </div>
           <div className="flex justify-between mb-2">
-            <span className="text-sm text-black">Conciliatory, hope-based</span>
+            <span className="text-sm text-black">Conciliatory</span>
             <span className="text-sm text-black">
-              Inflammatory, provocative, fear-based
+              Inflammatory
             </span>
           </div>
           <Slider className="w-full bg-gray-200" defaultValue={[50]} />
@@ -42,7 +48,7 @@ export default function ConfigureComponent({ guy }: { guy: string }) {
       </div>
       <Link href={'/'}>
             <div className="pt-4 mt-6">
-            <Button className="w-full h-12 text-white bg-black hover:bg-gray-800 rounded-md">Apply Changes</Button>
+            <Button className="w-full h-12 text-white bg-black hover:bg-gray-800 rounded-md">Start Simulating</Button>
             </div>
         </Link>
     </div>

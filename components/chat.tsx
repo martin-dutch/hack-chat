@@ -50,7 +50,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
   const currentUrl = window.location.href;
   const urlParams = new URLSearchParams(new URL(currentUrl).search);
 
-const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest Primary polls and says she is horrible!'
+  const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest Primary polls and says she is horrible!'
 
   // const  newsTitle = param.get('newsTitle') ?? 'Trump slams Haley in the latest Primary polls and says she is horrible!'
 
@@ -60,7 +60,7 @@ const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest
     // Set up a timer to update the state every 10 seconds
     const interval = setInterval(() => {
       setTick(tick => tick + 1); // Update the state to trigger a rerender
-    }, 10000);
+    }, 5000);
 
     // Cleanup function to clear the timer
     return () => clearInterval(interval);
@@ -95,7 +95,7 @@ const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest
       chat,
       loading,
       error
-    } = useChatHook(id ?? '', '10762010' ?? '', tick)
+    } = useChatHook(id ?? '', '10762010' ?? '', tick + round)
     console.log('session?.user.id','10762010')
     console.log('chat Id ',id )
     console.log('chat dcsonfpiovnokn',chat)
@@ -139,12 +139,12 @@ const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest
     
   return (
     <>
-      <Toolbar title={round === 0 ? newsTitle : `Round ${round}`} onCallback={() => {
+      <Toolbar title={round === 0 ? `News Title: ${newsTitle}` : `Round ${round}`} onCallback={() => {
         window.location.href = `/news`
       }} />
       <div>
-        {showPoll ? <div className='max-w-4xl mx-auto  my-6 p-8 relative '>
-          <h1 className="text-2xl font-bold tracking-tighter sm:text-2xl md:text-1xl pl-2">Poll results</h1>
+        {showPoll ? <div className='max-w-2xl mx-auto  my-6 p-8 relative '>
+          <h1 className="pt-2 font-bold tracking-tighter sm:text-2xl md:text-1xl">Poll results</h1>
           {
             chat?.articles.map((article, index) => {
               return <PollResults key={index} index={index} nikki={article.resultsNikky ?? 50} trump={100 - (article.resultsNikky ?? 50)}  />

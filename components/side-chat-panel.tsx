@@ -74,6 +74,16 @@ export function SideChatPanel({
     
   }, [threadId])
 
+  console.log('MESSAGES', messages)
+
+  const containerRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const container = containerRef.current;
+    container.scrollTop = container.scrollHeight;
+  }, [chatMessages.length]); // Dependency array, in this case, the content that changes
+
+
   console.log('JSONFIEd' , JSON.stringify(chatMessages))
   console.log('chatMessages TRANSPOSE', chatMessages?.map((message) => ({
     id: message.id,
@@ -86,7 +96,7 @@ export function SideChatPanel({
       <CardHeader className="border-b p-4">
         <CardTitle className="text-lg font-bold">{name}</CardTitle>
       </CardHeader>
-      <ScrollArea className="flex-1 p-4">
+      <ScrollArea className="flex-1 p-4" ref={containerRef}>
       <div className="flex">
   {chatMessages && (
     <ChatList 
@@ -95,7 +105,7 @@ export function SideChatPanel({
         id: message.id,
         content: message.content[0].text.value,
         role: message.role
-      })).reverse() ?? []} 
+      })) ?? []} 
     />
   )}
 </div>

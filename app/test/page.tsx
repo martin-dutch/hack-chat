@@ -13,13 +13,13 @@ export default function NewYorkTimes({
   description: string
 }) {
   return (
-    <div className="flex flex-col items-center justify-center px-4 py-6 md:px-6 md:py-12 lg:py-16">
+    <div className="flex flex-col items-center justify-center px-2 py-9">
       <header className="flex flex-col items-center justify-center space-y-4 text-center">
         <Image
           alt="New York Times Logo"
           // className="aspect-[2/1] overflow-hidden object-contain"
-          height={300}
-          width={500}
+          height={100}
+          width={350}
           src={nytlogo}
         />
         <div className="space-y-2">
@@ -31,14 +31,14 @@ export default function NewYorkTimes({
           </p>
         </div>
       </header>
-      <main className="flex flex-col space-y-8 w-full max-w-3xl mt-8">
+      <main className="flex flex-col space-y-8 w-full max-w-2xl mt-8">
         <article className="prose prose-gray max-w-none dark:prose-invert">
-          <Image
+          <img
             alt="New York Times Logo"
             // className="aspect-[2/1] overflow-hidden object-contain"
-            height={300}
+            height={200}
             width={800}
-            src={image ?? based}
+            src={image == null || image.length === 0  ? 'https://static.politico.com/43/d7/34b758de4836a2a871d8c3244fda/https-delivery.gettyimages.com/downloads/1048023676' : image}
           />
           <div className="space-y-2 not-prose">
             <h2 className="text-3xl font-serif font-bold tracking-tight lg:text-4xl">

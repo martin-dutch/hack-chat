@@ -23,16 +23,16 @@ const debateMoments = [
     text: `The unforgettable moment when Nikki Haley defended herself with a strong counter-argument.`,
     icon: ArrowRight
   },
-  {
-    title: `Trump's Policy Attack`,
-    text: `Trump's viral attack on Nikki's policy, creating a stir among the audience.`,
-    icon: ShoppingBagIcon
-  },
-  {
-    title: `Nikki's Record Defense`,
-    text: `The day Nikki Haley defended her record, setting a new standard for debate responses.`,
-    icon: ShoppingBagIcon
-  }
+//   {
+//     title: `Trump's Policy Attack`,
+//     text: `Trump's viral attack on Nikki's policy, creating a stir among the audience.`,
+//     icon: ShoppingBagIcon
+//   },
+//   {
+//     title: `Nikki's Record Defense`,
+//     text: `The day Nikki Haley defended her record, setting a new standard for debate responses.`,
+//     icon: ShoppingBagIcon
+//   }
 ]
 import { BarChart } from '@tremor/react'
 import { ArrowRight, DollarSign, ShoppingBagIcon } from 'lucide-react'
@@ -54,21 +54,28 @@ const data = [
     'Donald Trump': 84
   },
   {
-    Skill: 'Pwnage',
-    'Nikki Haley': 0,
-    'Donald Trump': 100
+    Skill: 'Clever',
+    'Nikki Haley': 25,
+    'Donald Trump': 70
   }
 ]
 
-const valueFormatter = (number: number | bigint) =>
+
+
+const PollResults = ({ nikki, trump, index }: { nikki: number; trump: number; index: number}) => {
+
+    const valueFormatter = (number: number | bigint) =>
   Intl.NumberFormat('us').format(number).toString()
 
-const PollResults = ({ nikki, trump }: { nikki: number; trump: number }) => {
+  const newDate = new Date();
+    newDate.setDate(newDate.getDate() + (index + 1) * 2);
+    
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="bg-gray-100 max-w-4xl mx-auto  my-10 p-8 shadow-lg border border-gray-300 relative">
-          <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <div className=" max-w-2xl mx-auto  my-5 relative">
+        <h1 className="text-2xl font-bold tracking-tighter sm:text-2xl md:text-1xl">{`Week ${index + 1}`}</h1>
+          <div className="flex items-center justify-between p-4 bg-white rounded-lg ">
             <div className="font-medium text-gray-600 dark:text-gray-400">{`${nikki}% Nikki Haley`}</div>
             <div className="relative w-full h-2 mx-4 rounded-full bg-gray-200 dark:bg-gray-700">
               <div
@@ -89,7 +96,7 @@ const PollResults = ({ nikki, trump }: { nikki: number; trump: number }) => {
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="min-w-[1200px]">
+      <DialogContent className="min-w-[800px] h-[800px]">
         <DialogHeader>
           <DialogTitle>Debate Deep Dive</DialogTitle>
           <DialogDescription>

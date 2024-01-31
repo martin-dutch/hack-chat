@@ -8,7 +8,7 @@ const HandwrittenNewspaperArticle = ({ title, date, content }: {
     content: string;
 }) => {
     return (
-        <main className="flex flex-col items-center justify-center px-4 py-6 md:px-6 lg:py-16 md:py-12">
+        <main className="flex flex-col items-center justify-center px-4 ">
       <article className="prose prose-gray mx-auto dark:prose-invert">
         {/* <figure>
           <img
