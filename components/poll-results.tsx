@@ -62,8 +62,9 @@ const data = [
 
 
 
-const PollResults = ({ nikki, trump, index }: { nikki: number; trump: number; index: number}) => {
+const PollResults = ({ nikki, trump, index, selected }: { nikki: number; trump: number; index: number; selected?: boolean}) => {
 
+  console.log('selected', selected)
     const valueFormatter = (number: number | bigint) =>
   Intl.NumberFormat('us').format(number).toString()
 
@@ -73,11 +74,11 @@ const PollResults = ({ nikki, trump, index }: { nikki: number; trump: number; in
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className=" max-w-2xl mx-auto  my-5 relative">
+        <div className=" max-w-2xl mx-auto  my-5 relative cursor-pointer">
         <h1 className="text-2xl font-bold tracking-tighter sm:text-2xl md:text-1xl">{`Week ${index + 1}`}</h1>
-          <div className="flex items-center justify-between p-4 bg-white rounded-lg ">
+          <div className={`flex items-center justify-between p-4 ${selected ? 'bg-grey' :  'bg-white'}  rounded-lg `}>
             <div className="font-medium text-gray-600 dark:text-gray-400">{`${nikki}% Nikki Haley`}</div>
-            <div className="relative w-full h-2 mx-4 rounded-full bg-gray-200 dark:bg-gray-700">
+            <div className={`relative w-full h-2 mx-4 rounded-full bg-gray-200 dark:bg-gray-700 ${selected ? 'bg-gray-400 dark:bg-gray-300' : 'bg-gray-200 dark:bg-gray-700'}`}>
               <div
                 className="absolute top-0 left-0 h-full bg-green-500 rounded-full"
                 style={{

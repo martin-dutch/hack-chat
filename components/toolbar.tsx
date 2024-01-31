@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 export default function Toolbar({ title, mainPage, onCallback }: {title: string, mainPage?: boolean, onCallback?: () => void}) {
     const router = useRouter()
   return (
-    <div className="flex items-center justify-between p-4 bg-white text-center sticky top-0">
+    <div className="flex items-center justify-between p-4 bg-white text-center sticky top-0 z-">
       <Button size="icon" variant="ghost" onClick={() => onCallback ? onCallback() : router.back()} className={`${mainPage ? 'opacity-0' : ''}`}>
         <ArrowLeftIcon className="h-4 w-4" />
         <span className="sr-only">Back</span>

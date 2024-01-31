@@ -62,7 +62,7 @@ export default function Chat({
 
   return (
     <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
-      <h1>{person}</h1>
+      <h1>{`${person} - HQ`}</h1>
       {messages.map((m: Message) => (
         <div
           key={m.id}
