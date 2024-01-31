@@ -122,23 +122,18 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
     }
     const showPoll = !showNewsArticle && round > 0;
 
-    const hasMounted = useRef(false);
 
     useEffect(() => {
       if(round > 1) {
         // GO to results page!!!!!
         window.location.href = `/summary?chatId=${id}`
       } 
-      if (hasMounted.current) {
         console.log('FETCHING')
         fetch(`http://localhost:3000/api/assistant_trump?message=${newsTitle}&roundnumber=${round}&chatId=${id}&niki=trump`, {
           method: 'POST',
           redirect: 'follow'
         })
         console.log('ASYNC DONE')
-      } else {
-        hasMounted.current = true;
-      }
     }, [round])
     
   return (
