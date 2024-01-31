@@ -1,4 +1,5 @@
 import { auth } from '@/auth';
+import { USER_ID } from '@/lib/utils';
 import { kv } from '@vercel/kv';
 import { nanoid } from 'nanoid';
 import OpenAI from 'openai'
@@ -13,7 +14,7 @@ export async function POST(req: Request) {
     const input: {
         chatId: string | null
       } = await req.json()
-    const userId = (await auth())?.user.id
+    const userId = USER_ID // (await auth())?.user.id
     const chatId = input.chatId ?? undefined
 
     // Create a thread if needed

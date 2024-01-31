@@ -13,7 +13,7 @@ export default function NewYorkTimes({
   description: string
 }) {
   return (
-    <div className="flex flex-col items-center justify-center px-2 py-9">
+    <div className="flex flex-col items-center justify-center px-2 py-9 w-2/5 mx-auto">
       <header className="flex flex-col items-center justify-center space-y-4 text-center">
         <Image
           alt="New York Times Logo"

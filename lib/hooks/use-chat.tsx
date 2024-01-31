@@ -1,6 +1,7 @@
 import { getChat } from '@/app/actions'
 import { useState, useEffect } from 'react'
 import { Chat } from '../types'
+import { USER_ID } from '../utils'
 
 // Define the hook
 export function useChatHook(id: string, userId: string, refresh: number) {
@@ -11,7 +12,7 @@ export function useChatHook(id: string, userId: string, refresh: number) {
     useEffect(() => {
       const fetchChat = async () => {
         try {
-          const chatData = await getChat(id, userId)
+          const chatData = await getChat(id, USER_ID)
           setChat(chatData)
           setLoading(false)
         } catch (err) {

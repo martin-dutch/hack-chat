@@ -1,7 +1,7 @@
 import { getChat } from '@/app/actions';
 import { auth } from '@/auth';
 import { Chat } from '@/lib/types';
-import { getRandomNumberInRange } from '@/lib/utils';
+import { USER_ID, getRandomNumberInRange } from '@/lib/utils';
 import { kv } from '@vercel/kv';
 import OpenAI from 'openai';
 
@@ -13,7 +13,7 @@ const openai = new OpenAI({
 export async function POST(req: Request) {
   // const input = await req.json();
   
-  const userId = (await auth())?.user.id ?? ''
+  const userId = USER_ID // (await auth())?.user.id ?? ''
 
 
   const {searchParams} = new URL(req.url);

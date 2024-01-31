@@ -2,6 +2,7 @@ import { clearChats, getChats } from '@/app/actions'
 import { ClearHistory } from '@/components/clear-history'
 import { SidebarItems } from '@/components/sidebar-items'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { USER_ID } from '@/lib/utils'
 import { cache } from 'react'
 
 interface SidebarListProps {
@@ -14,7 +15,7 @@ export const loadChats = cache(async (userId?: string) => {
 })
 
 export async function SidebarList({ userId }: SidebarListProps) {
-  const chats = await loadChats(userId)
+  const chats = await loadChats(USER_ID)
 
   console.log('chats', JSON.stringify(chats))
   return (

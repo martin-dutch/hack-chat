@@ -2,6 +2,7 @@ import OpenAI from 'openai'
 import Request from 'next'
 import { auth } from '@/auth';
 import { getChat } from '@/app/actions';
+import { USER_ID } from '@/lib/utils';
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY || ''
@@ -21,7 +22,7 @@ export async function GET(req: Request) {
     // console.log('searchParams.ge', searchParams.get('niki') as string)
     // console.log('niki', niki)
 
-    const userId = (await auth())?.user.id ?? ''
+    const userId = USER_ID// (await auth())?.user.id ?? ''
 
     const chat = await getChat(chatId ?? '', userId)
 

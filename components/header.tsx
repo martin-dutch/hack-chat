@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 
-import { cn } from '@/lib/utils'
+import { USER_ID, cn } from '@/lib/utils'
 import { auth } from '@/auth'
 import { Button, buttonVariants } from '@/components/ui/button'
 import {
@@ -22,7 +22,7 @@ async function UserOrLogin() {
       {session?.user ? (
         <>
           <SidebarMobile>
-            <ChatHistory userId={session.user.id} />
+            <ChatHistory userId={USER_ID} />
           </SidebarMobile>
           <SidebarToggle />
         </>

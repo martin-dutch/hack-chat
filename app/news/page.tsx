@@ -4,6 +4,10 @@
 import Toolbar from '@/components/toolbar'
 import Link from 'next/link'
 
+// const urlParams = new URLSearchParams(new URL(currentUrl).search);
+
+//   const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest Primary polls and says she is horrible!'
+
 /**
  * v0 by Vercel.
  * @see https://v0.dev/t/avCXYzskrcX
@@ -12,7 +16,9 @@ import Link from 'next/link'
 export default function Component() {
   return (
     <>
-    <Toolbar title="Latest News" />
+    <Toolbar title="Latest News" onCallback={() => {
+      window.location.href = `/`
+    }} />
     <section className="w-full py-4 md:py-16 lg:py-16">
       <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6 lg:gap-10">
         <div className="space-y-3">
@@ -24,7 +30,7 @@ export default function Component() {
           </p>
         </div>
         <div className="grid w-full grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
-          <Link href={'/settings'}>
+          <Link href={'/settings?newsTitle=Haley amps up her attacks on Trump, calling him \‘totally unhinged.'}>
             <div className="space-y-4">
               <img
                 alt="News Image"
@@ -40,7 +46,7 @@ export default function Component() {
               {/* <p className="text-gray-500">Read more on NYTimes</p> */}
             </div>
           </Link>
-          <Link href={'/settings'}>
+          <Link href={'/settings?newsTitle=Koch officials tell donors Nikki Haley was the right candidate to back, despite early losses to Trump'}>
             <div className="space-y-4">
               <img
                 alt="News Image"
@@ -56,7 +62,7 @@ export default function Component() {
               {/* <p className="text-gray-500">Read more on CNN</p> */}
             </div>
           </Link>
-          <Link href={'/settings'}>
+          <Link href={'/settings?newsTitle=Trump pollster predicts "smackdown" of Haley in South Carolina'}>
             <div className="space-y-4">
               <img
                 alt="News Image"
@@ -71,7 +77,7 @@ export default function Component() {
               {/* <p className="text-gray-500">Read more on Axios</p> */}
             </div>
           </Link>
-          <Link href={'/settings'}>
+          <Link href={'/settings?newsTitle=Nikki Haley hoping to \'hinge on\' Trump\'s legal charges as Republican race continues'}>
             <div className="space-y-4">
               <img
                 alt="News Image"
@@ -94,7 +100,7 @@ export default function Component() {
 
 
 
-          <Link href={'/settings'}>
+          <Link href={'/settings?newsTitle=Wall Street Donors Keep Haley\’s 2024 Run Afloat, Even If Voters Won\’t'}>
             <div className="space-y-4">
               <img
                 alt="News Image"
@@ -109,7 +115,7 @@ export default function Component() {
               {/* <p className="text-gray-500">Read more on NYTimes</p> */}
             </div>
           </Link>
-          <Link href={'/settings'}>
+          <Link href={'/settings?newsTitle=Trump must pay $83.3 million for defaming E. Jean Carroll, jury says'}>
             <div className="space-y-4">
               <img
                 alt="News Image"
@@ -124,7 +130,7 @@ export default function Component() {
               {/* <p className="text-gray-500">Read more on CNN</p> */}
             </div>
           </Link>
-          <Link href={'/settings'}>
+          <Link href={'/settings?newsTitle=Nikki Haley calls Trump \‘disgruntled\’ and \‘vengeful\’ as she spars with Fox hosts over electability'}>
             <div className="space-y-4">
               <img
                 alt="News Image"
@@ -139,7 +145,7 @@ export default function Component() {
               {/* <p className="text-gray-500">Read more on Axios</p> */}
             </div>
           </Link>
-          <Link href={'/settings'}>
+          <Link href={'/settings?newsTitle=Nikki Haley was swatted in December, records review shows'}>
             <div className="space-y-4">
               <img
                 alt="News Image"

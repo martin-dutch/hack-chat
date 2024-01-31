@@ -4,6 +4,7 @@ import { notFound, redirect } from 'next/navigation'
 import { auth } from '@/auth'
 import { getChat } from '@/app/actions'
 import { Chat } from '@/components/chat'
+import { USER_ID } from '@/lib/utils'
 
 export interface ChatPageProps {
   params: {
@@ -20,7 +21,7 @@ export async function generateMetadata({
     return {}
   }
 
-  const chat = await getChat(params.id, session.user.id)
+  const chat = await getChat(params.id, USER_ID)
   return {
     title: chat?.title.toString().slice(0, 50) ?? 'Chat'
   }
@@ -29,17 +30,17 @@ export async function generateMetadata({
 export default async function ChatPage({ params }: ChatPageProps) {
   const session = await auth()
 
-  if (!session?.user) {
-    redirect(`/sign-in?next=/chat/${params.id}`)
-  }
+  // if (!session?.user) {
+  //   redirect(`/sign-in?next=/chat/${params.id}`)
+  // }
 
-  const chat = await getChat(params.id, session.user.id)
+  const chat = await getChat(params.id, USER_ID)
 
   if (!chat) {
     notFound()
   }
 
-  if (chat?.userId !== session?.user?.id) {
+  if (chat?.userId !== USER_ID) {
     notFound()
   }
 

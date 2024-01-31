@@ -1,52 +1,43 @@
 "use client"
-
 import { nanoid } from '@/lib/utils'
 import { Chat } from '@/components/chat'
-import { useEffect } from 'react'
-import { loadChats } from '@/components/sidebar-list'
-import { auth } from '@/auth'
-import LottieAnimation from '@/components/loading'
-// import { Router } from 'next/navigation'
+import Link from 'next/link'
+import Toolbar from '@/components/toolbar'
 
 export default function IndexPage() {
   const id = nanoid()
-  
-  console.log('ejnorefnoaojqn')
 
-  useEffect(() => {
-    const s = async () => {
-      console.log('function async')
-      const userId = (await auth())?.user.id
-      const chats = await loadChats(userId)
-      console.log('chats', JSON.stringify(chats))
-
-    }
-    s()
-  },[])
-
-  useEffect(() => {
-    fetch('/api/create_chat', {
-      method: 'POST',
-      body: JSON.stringify({
-        chatId: id,
-      })})
-      .then(response => response.json())
-      .then(data => {
-        // Do something with the data
-        // Then navigate to a different page
-        console.log('data', data)
-        window.location.href = `/chat/${id}?newsTitle=Trump slams Haley in the latest Primary polls and says she is horrible!`
-      })
-      .catch(error => {
-        
-        console.error('Error:', error)
-      })
-  }, [])
-
-
-  return <div className='items-center align-middle max-h-screen'>
-    <div className="w-200 h-200 fixed top-0 bottom-0 right-0 left-0 flex">
-      <LottieAnimation />
-    </div>
-  </div>
+  return (
+    <>
+      <Toolbar title="COGNOSCENT.AI" mainPage/>
+      <main className="flex flex-col items-center justify-center h-screen   dark:bg-gray-900">
+      
+      {/* <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-8">COGNISANT.AI</h1> */}
+      <div className=" flex fixed  justify-center">
+        <Link href={'news'}>
+          {/* Replacing the video tag with an img tag for the GIF */}
+          <h1 className="text-7xl font-bold text-center text-gray-800 dark:text-gray-200 mb-8 fixed left-1/2 top-[30%] -translate-x-1/2 pr-[700px]">HYPERINTELLIGENCE</h1>
+          <h1 className="text-7xl font-bold text-center text-gray-800 dark:text-gray-200 mb-8 fixed left-1/2 top-[50%] -translate-x-1/2 pl-[700px] whitespace-nowrap">FOR DEMOCRACY</h1>
+          <img
+            alt="Hero Image"
+            className="mx-auto w-3/10 h-5/10"
+            src="/liberty.png" // Replace with your GIF file path
+            style={{
+              aspectRatio: "5/5",
+              height: '80%',
+              position: 'fixed',
+              right: '0',
+              left: '0',
+              bottom: '0',
+              // objectFit: "cover",
+            }}
+          />
+       
+          
+        </Link>
+      </div>
+    </main>
+    </>
+   
+  )
 }
