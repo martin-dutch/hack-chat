@@ -129,7 +129,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
         window.location.href = `/summary?chatId=${id}`
       } 
         console.log('FETCHING')
-        fetch(`http://localhost:3000/api/assistant_trump?message=${newsTitle}&roundnumber=${round}&chatId=${id}&niki=trump`, {
+        fetch(`/api/assistant_trump?message=${newsTitle}&roundnumber=${round}&chatId=${id}&niki=trump`, {
           method: 'POST',
           redirect: 'follow'
         })
