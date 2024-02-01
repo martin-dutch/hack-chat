@@ -142,7 +142,7 @@ export default function ChatPage({ params }: ChatPageProps) {
           roundNumber={index}
           isShowingArticleGenerationAnimation={false}
           description={article.text ?? ''}/> 
-              {index !== chat?.articles.length && (<SideChatPanel
+              {index !== (chat?.articles.length ?? 0) -1 && (<SideChatPanel
             id={id}
             isLoading={false}
               start={true}
@@ -152,7 +152,7 @@ export default function ChatPage({ params }: ChatPageProps) {
               onNumberMessagesChanged={(numb) => {}}
               threadId={chat?.sideChats[round]?.nikiId ?? ''}
             />)}
-            {index !== chat?.articles.length && (<SideChatPanel
+            {index !== (chat?.articles.length ?? 0) -1 && (<SideChatPanel
             id={id}
             isLoading={false}
               start={false}
