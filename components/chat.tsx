@@ -148,7 +148,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
     const isShowingArticleGenerationAnimation = leftMessages === 3 && rightMessages === 3
   return (
     <>
-      <Toolbar title={round === 0 ? `News Title: ${STARTING_ARTICLES[Number(newsTitle) ?? 0].title}` : `Round ${round}`} onCallback={() => {
+      <Toolbar title={round === 0 ? `News Title: ${STARTING_ARTICLES[Number(newsTitle) ?? 0].title}` : `SIMULATED Round ${round}`} onCallback={() => {
         window.location.href = `/news`
       }} />
       <div>

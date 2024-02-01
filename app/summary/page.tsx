@@ -142,7 +142,7 @@ export default function ChatPage({ params }: ChatPageProps) {
           roundNumber={index}
           isShowingArticleGenerationAnimation={false}
           description={article.text ?? ''}/> 
-              <SideChatPanel
+              {index !== chat?.articles.length && (<SideChatPanel
             id={id}
             isLoading={false}
               start={true}
@@ -151,7 +151,8 @@ export default function ChatPage({ params }: ChatPageProps) {
               chatId={id}
               onNumberMessagesChanged={(numb) => {}}
               threadId={chat?.sideChats[round]?.nikiId ?? ''}
-            /><SideChatPanel
+            />)}
+            {index !== chat?.articles.length && (<SideChatPanel
             id={id}
             isLoading={false}
               start={false}
@@ -160,7 +161,7 @@ export default function ChatPage({ params }: ChatPageProps) {
               onNumberMessagesChanged={(numb) => {}}
               chatId={id}
               threadId={chat?.sideChats[round]?.trumpId ?? ''}
-            />
+            />)}
             </TabsContent>
           )
         })}

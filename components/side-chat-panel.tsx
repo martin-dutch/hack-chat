@@ -71,7 +71,7 @@ const isTrump = name === 'Trump'
 
   React.useEffect(() => {
       onNumberMessagesChanged(chatMessages.length)
-  },[chatMessages.length])
+  },[chatMessages.map((message) => message.content.length > 0).length])
 
 
   const containerRef = React.useRef(null);
