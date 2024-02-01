@@ -47,6 +47,9 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
     null
   )
 
+  const [leftMessages, setLeftMessages] = useState(0)
+  const [rightMessages, setRightMessages] = useState(0)
+
   const currentUrl = window.location.href;
   const urlParams = new URLSearchParams(new URL(currentUrl).search);
 
@@ -138,39 +141,25 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
     }, [round])
 
     useEffect(() => {
-      if(chat?.articles.length === 2) {
-        setRound(1)
-      }
+        setRound((chat?.articles.length ?? 1) - 1)
     },[chat?.articles.length])
+
     
+    const isShowingArticleGenerationAnimation = leftMessages === 3 && rightMessages === 3
   return (
     <>
       <Toolbar title={round === 0 ? `News Title: ${STARTING_ARTICLES[Number(newsTitle) ?? 0].title}` : `Round ${round}`} onCallback={() => {
         window.location.href = `/news`
       }} />
       <div>
-        {showPoll ? <div className='max-w-2xl mx-auto  my-6 p-8 relative '>
-          <h1 className="pt-2 font-bold tracking-tighter sm:text-2xl md:text-1xl">Poll results</h1>
-          {
-            chat?.articles.map((article, index) => {
-              return <PollResults key={index} index={index} nikki={article.resultsNikky ?? 50} trump={100 - (article.resultsNikky ?? 50)}  />
-            })
-          }
-        </div> : showNewsArticle ? <>
-        {showNewsArticle && round !== 0 && (<Timer onTimerComplete={() => {
-          setRound((prev) => prev + 1)
-          console.log('ROUND', round)
-          }} />)}
+      <div className='max-w-2xl mx-auto  mt-2 pt-8 px-8 relative '>
+          <PollResults key={round} index={round} nikki={chat?.articles[round].resultsNikky ?? 50} trump={100 - (chat?.articles[round].resultsNikky ?? 50)}  />
+        </div>
         <NewYorkTimes headline={news.title}
         roundNumber={round}
+        isShowingArticleGenerationAnimation={isShowingArticleGenerationAnimation}
           image={news.image}
           description={news.content}/> 
-        </> : messages.length ? (
-          <>
-            <ChatList messages={messages} trump/>
-            <ChatScrollAnchor trackVisibility={isLoading} />
-          </>
-        ) : <></>}
       </div>
 
      { chat?.sideChats[round]?.nikiId && ( <SideChatPanel
@@ -181,9 +170,13 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
         roundnumber={round}
         chatId={id}
         threadId={chat?.sideChats[round]?.nikiId ?? ''}
+        onNumberMessagesChanged={(numb) => {
+          setLeftMessages(numb)
+        }
+        }
        />)}
 
-    { chat?.sideChats[round]?.trumpId && (<SideChatPanel
+      {chat?.sideChats[round]?.trumpId && (<SideChatPanel
        id={id}
        isLoading={isLoading}
         start={false}
@@ -191,6 +184,10 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
         roundnumber={round}
         chatId={id}
         threadId={chat?.sideChats[round]?.trumpId ?? ''}
+        onNumberMessagesChanged={(numb) => {
+          setRightMessages(numb)
+        }
+        }
        />)}
 
       <Dialog open={previewTokenDialog} onOpenChange={setPreviewTokenDialog}>

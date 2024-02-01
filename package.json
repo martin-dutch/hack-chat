@@ -38,6 +38,7 @@
     "focus-trap-react": "^10.2.3",
     "framer-motion": "^10.18.0",
     "geist": "^1.2.1",
+    "ldrs": "^1.0.1",
     "lottie-web": "^5.12.2",
     "lucide-react": "^0.316.0",
     "nanoid": "^5.0.4",

@@ -123,7 +123,7 @@ export default function ChatPage({ params }: ChatPageProps) {
         window.location.href = `/news`
       }} />
       <Tabs defaultValue="Round 1" className="w-full">
-      <TabsList className="grid w-[600px] grid-cols-4 mx-auto mt-6">
+      <TabsList className={`grid w-[600px] grid-cols-${(chat?.articles.length ?? 0) + 1} mx-auto mt-6`}>
         {
           chat?.articles.map((article, index) => {
             return (
@@ -140,6 +140,7 @@ export default function ChatPage({ params }: ChatPageProps) {
         <NewYorkTimes headline={article.title ?? ''}
           image={article.image}
           roundNumber={index}
+          isShowingArticleGenerationAnimation={false}
           description={article.text ?? ''}/> 
               <SideChatPanel
             id={id}
@@ -148,6 +149,7 @@ export default function ChatPage({ params }: ChatPageProps) {
               name='Nikki Haley'
               roundnumber={index}
               chatId={id}
+              onNumberMessagesChanged={(numb) => {}}
               threadId={chat?.sideChats[round]?.nikiId ?? ''}
             /><SideChatPanel
             id={id}
@@ -155,6 +157,7 @@ export default function ChatPage({ params }: ChatPageProps) {
               start={false}
               name='Trump'
               roundnumber={index}
+              onNumberMessagesChanged={(numb) => {}}
               chatId={id}
               threadId={chat?.sideChats[round]?.trumpId ?? ''}
             />

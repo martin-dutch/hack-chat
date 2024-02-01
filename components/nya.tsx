@@ -1,22 +1,49 @@
+// import { bouncy } from 'ldrs'
 import Image from 'next/image'
 import nytlogo from '../public/nyt.png'
 import based from '../../public/based.png'
 import PollResults from '@/components/poll-results'
+import { useEffect } from 'react'
 
 export default function NewYorkTimes({
   headline,
   image,
   description,
+  isShowingArticleGenerationAnimation,
   roundNumber,
 }: {
   headline: string
   image?: string | null
   description: string
+  isShowingArticleGenerationAnimation?: boolean
   roundNumber?: number
 }) {
+  // useEffect(() => {
+  //   bouncy.register()
+  // },[])
+  
   return (
-    <div className="flex flex-col items-center justify-center px-2 py-9 w-2/5 mx-auto">
+    <div className="flex flex-col items-center justify-center px-2 p-2 w-2/5 mx-auto">
       <header className="flex flex-col items-center justify-center space-y-4 text-center">
+        <div className=''>
+        {
+          isShowingArticleGenerationAnimation && (
+
+
+// Default values shown
+<div className=''>
+
+<div className='flex space-x-2 justify-center items-center bg-white '>
+  	<div className='h-3 w-3 bg-black rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+	<div className='h-3 w-3 bg-black rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+	<div className='h-3 w-3 bg-black rounded-full animate-bounce'></div>
+</div>
+
+      <h1 className="text-1xl font-serif font-bold mt-2">Generating new Article</h1>
+      </div>
+
+          )
+        }
         <Image
           alt="New York Times Logo"
           // className="aspect-[2/1] overflow-hidden object-contain"
@@ -24,6 +51,9 @@ export default function NewYorkTimes({
           width={350}
           src={nytlogo}
         />
+        
+        </div>
+       
         <div className="space-y-2">
           {/* <h1 className="text-4xl font-serif font-extrabold tracking-tight lg:text-5xl">
             The New York Times
@@ -33,7 +63,7 @@ export default function NewYorkTimes({
           </p>
         </div>
       </header>
-      <main className="flex flex-col space-y-8 w-full max-w-2xl mt-8">
+      <main className="flex flex-col space-y-2 w-full max-w-2xl mt-2">
         <article className="prose prose-gray max-w-none ">
           <img
             alt="New York Times Logo"

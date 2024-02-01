@@ -27,13 +27,15 @@ export interface ChatPanelProps
   chatId?: string
   threadId?: string
   roundnumber?: number
+  onNumberMessagesChanged: (numberMessages: number) => void
 }
 export function SideChatPanel({
   name,
   start,
   threadId,
   chatId,
-  roundnumber
+  roundnumber,
+  onNumberMessagesChanged,
 }: ChatPanelProps) {
   const [shareDialogOpen, setShareDialogOpen] = React.useState(false)
   const [chatMessages, setChatMessages] = React.useState<OpenAI.Beta.Threads.Messages.ThreadMessage[]>([])
@@ -66,6 +68,10 @@ const isTrump = name === 'Trump'
     }
     
   }, [threadId])
+
+  React.useEffect(() => {
+      onNumberMessagesChanged(chatMessages.length)
+  },[chatMessages.length])
 
 
   const containerRef = React.useRef(null);
