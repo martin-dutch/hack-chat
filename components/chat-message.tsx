@@ -9,17 +9,19 @@ import remarkMath from 'remark-math'
 import { cn } from '@/lib/utils'
 import { CodeBlock } from '@/components/ui/codeblock'
 import { MemoizedReactMarkdown } from '@/components/markdown'
-import { IconOpenAI, IconUser } from '@/components/ui/icons'
+import { IconOpenAI, IconUser, ImageIcon } from '@/components/ui/icons'
 import { ChatMessageActions } from '@/components/chat-message-actions'
 import MyLoader from './textLoader';
 
 export interface ChatMessageProps {
   message: Message
   size?: 'small' | 'large'
+  trump: boolean
 }
 
-export function ChatMessage({ message,size, ...props }: ChatMessageProps) {
+export function ChatMessage({ message,size, trump, ...props }: ChatMessageProps) {
   const small = size === 'small'
+  console.log('message.content',message.content)
   return (
     <div
       className={cn('group relative mb-4 flex items-start md:-ml-12 px-8')}
@@ -33,11 +35,11 @@ export function ChatMessage({ message,size, ...props }: ChatMessageProps) {
             : 'bg-primary text-primary-foreground'
         )}
       >
-        {message.role === 'user' ? <IconUser /> : <IconOpenAI />}
+        {message.role === 'user' ? trump?  <ImageIcon imageUrl={"https://thumbs.dreamstime.com/b/june-donald-trump-president-united-states-portrait-orange-face-hair-clip-art-icon-isolated-red-background-republican-186436485.jpg"} /> : <ImageIcon imageUrl={"https://cdn1.vectorstock.com/i/1000x1000/94/70/brunette-girl-icon-flat-style-vector-12459470.jpg"} />  : <ImageIcon imageUrl={"https://icons.veryicon.com/png/o/business/financial-icon-1/financial-adviser.png"} />}  
       </div>
-      <div className="flex-1 px-1 ml-4 space-y-2 overflow-hidden">
+      <div className={`flex-1 px-1 ml-4 space-y-2 overflow-hidden radius rounded-lg ${message.role === 'user' ? 'bg-slate-200' : 'bg-slate-300'}  `}>
         <MemoizedReactMarkdown
-          className={`prose break-words prose-p:leading-relaxed prose-pre:p-0`}
+          className={`prose p-3 break-words prose-p:leading-relaxed prose-pre:p-0`}
           remarkPlugins={[remarkGfm, remarkMath]}
           components={{
             p({ children }) {
@@ -75,7 +77,7 @@ export function ChatMessage({ message,size, ...props }: ChatMessageProps) {
             }
           }}
         >
-          {message.content}
+          {`**${message.role === 'user' ? trump ? 'TRUMP' : 'NIKI' : 'ADVISOR'} SAYS** \n\n` + message.content}
         </MemoizedReactMarkdown>
         {
           message.content.length === 0 ? (<MyLoader/>) : (<></>)

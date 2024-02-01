@@ -122,7 +122,7 @@ export default function ChatPage({ params }: ChatPageProps) {
       <Toolbar title={`Strategy Summary`} onCallback={() => {
         window.location.href = `/news`
       }} />
-      <Tabs defaultValue="account" className="w-full">
+      <Tabs defaultValue="Round 1" className="w-full">
       <TabsList className="grid w-[600px] grid-cols-4 mx-auto mt-6">
         {
           chat?.articles.map((article, index) => {
@@ -139,6 +139,7 @@ export default function ChatPage({ params }: ChatPageProps) {
             <TabsContent key={index} value={`Round ${index + 1}`}>
         <NewYorkTimes headline={article.title ?? ''}
           image={article.image}
+          roundNumber={index}
           description={article.text ?? ''}/> 
               <SideChatPanel
             id={id}
@@ -182,6 +183,7 @@ export default function ChatPage({ params }: ChatPageProps) {
           <>
           <NewYorkTimes headline={news.title}
             image={news.image}
+            roundNumber={round}
             description={news.content}/> 
           </>
         </div>

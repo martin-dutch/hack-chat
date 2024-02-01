@@ -30,7 +30,7 @@ export default function Component() {
           </p>
         </div>
         <div className="grid w-full grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
-          <Link href={'/settings?newsTitle=Haley amps up her attacks on Trump, calling him \‘totally unhinged.'}>
+          <Link href={'/settings?newsTitle=0'}>
             <div className="space-y-4">
               <img
                 alt="News Image"
@@ -46,7 +46,7 @@ export default function Component() {
               {/* <p className="text-gray-500">Read more on NYTimes</p> */}
             </div>
           </Link>
-          <Link href={'/settings?newsTitle=Koch officials tell donors Nikki Haley was the right candidate to back, despite early losses to Trump'}>
+          <Link href={'/settings?newsTitle=1'}>
             <div className="space-y-4">
               <img
                 alt="News Image"
@@ -62,7 +62,7 @@ export default function Component() {
               {/* <p className="text-gray-500">Read more on CNN</p> */}
             </div>
           </Link>
-          <Link href={'/settings?newsTitle=Trump pollster predicts "smackdown" of Haley in South Carolina'}>
+          <Link href={'/settings?newsTitle=2'}>
             <div className="space-y-4">
               <img
                 alt="News Image"
@@ -77,7 +77,7 @@ export default function Component() {
               {/* <p className="text-gray-500">Read more on Axios</p> */}
             </div>
           </Link>
-          <Link href={'/settings?newsTitle=Nikki Haley hoping to \'hinge on\' Trump\'s legal charges as Republican race continues'}>
+          <Link href={'/settings?newsTitle=3'}>
             <div className="space-y-4">
               <img
                 alt="News Image"
@@ -100,7 +100,7 @@ export default function Component() {
 
 
 
-          <Link href={'/settings?newsTitle=Wall Street Donors Keep Haley\’s 2024 Run Afloat, Even If Voters Won\’t'}>
+          <Link href={'/settings?newsTitle=4'}>
             <div className="space-y-4">
               <img
                 alt="News Image"
@@ -115,7 +115,7 @@ export default function Component() {
               {/* <p className="text-gray-500">Read more on NYTimes</p> */}
             </div>
           </Link>
-          <Link href={'/settings?newsTitle=Trump must pay $83.3 million for defaming E. Jean Carroll, jury says'}>
+          <Link href={'/settings?newsTitle=5'}>
             <div className="space-y-4">
               <img
                 alt="News Image"
@@ -130,7 +130,7 @@ export default function Component() {
               {/* <p className="text-gray-500">Read more on CNN</p> */}
             </div>
           </Link>
-          <Link href={'/settings?newsTitle=Nikki Haley calls Trump \‘disgruntled\’ and \‘vengeful\’ as she spars with Fox hosts over electability'}>
+          <Link href={'/settings?newsTitle=6'}>
             <div className="space-y-4">
               <img
                 alt="News Image"
@@ -145,7 +145,7 @@ export default function Component() {
               {/* <p className="text-gray-500">Read more on Axios</p> */}
             </div>
           </Link>
-          <Link href={'/settings?newsTitle=Nikki Haley was swatted in December, records review shows'}>
+          <Link href={'/settings?newsTitle=7'}>
             <div className="space-y-4">
               <img
                 alt="News Image"

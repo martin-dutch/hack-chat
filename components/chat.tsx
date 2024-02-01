@@ -2,7 +2,7 @@
 
 import { useChat, type Message } from 'ai/react'
 
-import { cn, getRandomNumberInRange } from '@/lib/utils'
+import { STARTING_ARTICLES, cn, getRandomNumberInRange } from '@/lib/utils'
 import { ChatList } from '@/components/chat-list'
 import { ChatPanel } from '@/components/chat-panel'
 import { EmptyScreen } from '@/components/empty-screen'
@@ -50,7 +50,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
   const currentUrl = window.location.href;
   const urlParams = new URLSearchParams(new URL(currentUrl).search);
 
-  const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest Primary polls and says she is horrible!'
+  const newsTitle = urlParams.get('newsTitle') ?? 0
 
   // const  newsTitle = param.get('newsTitle') ?? 'Trump slams Haley in the latest Primary polls and says she is horrible!'
 
@@ -124,9 +124,10 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
 
 
     useEffect(() => {
-      if(round > 1) {
+      if(round > 2) {
         // GO to results page!!!!!
         window.location.href = `/summary?chatId=${id}`
+        return
       } 
         console.log('FETCHING')
         fetch(`/api/assistant_trump?message=${newsTitle}&roundnumber=${round}&chatId=${id}&niki=trump`, {
@@ -138,7 +139,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
     
   return (
     <>
-      <Toolbar title={round === 0 ? `News Title: ${newsTitle}` : `Round ${round}`} onCallback={() => {
+      <Toolbar title={round === 0 ? `News Title: ${STARTING_ARTICLES[Number(newsTitle) ?? 0].title}` : `Round ${round}`} onCallback={() => {
         window.location.href = `/news`
       }} />
       <div>
@@ -150,33 +151,25 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
             })
           }
         </div> : showNewsArticle ? <>
-        {showNewsArticle && (<Timer onTimerComplete={() => {
+        {showNewsArticle && round !== 0 && (<Timer onTimerComplete={() => {
           setRound((prev) => prev + 1)
           console.log('ROUND', round)
           }} />)}
         <NewYorkTimes headline={news.title}
+        roundNumber={round}
           image={news.image}
           description={news.content}/> 
         </> : messages.length ? (
           <>
-            <ChatList messages={messages} />
+            <ChatList messages={messages} trump/>
             <ChatScrollAnchor trackVisibility={isLoading} />
           </>
-        ) : (
-          <NewYorkTimes headline={newsTitle}
-          description={`Trump argues that Haley is horrible and can not be trusted to lead the Republican party. The electoral landscape for the primaries is turning out to be a tough slugfest. Trump is ahead in every state, with astonishing leads in Texas (76%), Tennessee (80%), and a far smaller but still substantive lead in Vermont (47%). Meanwhile, Haley trails considerably everywhere but has slightly smaller margins to close in the likes of South Dakota (52% Trump), Vermont (47% Trump), and South Carolina (58% Trump).\n\nBoth candidates have different strategies. Haley has taken the gloves off, dubbing Trump “totally unhinged” and strategically focusing on states with smaller lead gaps — South Carolina, South Dakota, and Vermont. Herculean efforts are being made to resonate with potential swing voters and demographics dissatisfied with the current political discourse. However, her prior subtler tactics have not gathered enough momentum, and it remains to be seen whether this increased aggression will make a considerable dent in Trump's steady support.\n\nOn the flip side, Trump, playing to his numerical strengths, is reinforcing his strongholds — states like Florida, Texas, and Arizona — while simultaneously attempting to sway the swing states even further in his advantage. He's capitalizing on economic and immigration-centric messaging, leveraging his first-term achievements to appeal to America's primary concerns. \n\nWhile the financial race is neck-and-neck with campaigns, Trump lags slightly behind Haley regarding Super PAC spending. It's worthy to watch how these resources will be maneuvered in the coming weeks.\n\nGiven the current strategies and standings, Trump's position is robust. However, with volatile electoral landscapes, nothing is carved in stone. Haley might pick up speed if her aggressive approach pays off in the swing states while Trump's economy-centric narrative continues to resonate, posing solid conservation for his base. NF.\n`}/> 
-        )}
+        ) : <></>}
       </div>
 
      { chat?.sideChats[round]?.nikiId && ( <SideChatPanel
        id={id}
        isLoading={isLoading}
-       stop={stop}
-       append={append}
-       reload={reload}
-       messages={messages}
-       input={input}
-       setInput={setInput}
         start={true}
         name='Nikki Haley'
         roundnumber={round}
@@ -187,12 +180,6 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
     { chat?.sideChats[round]?.trumpId && (<SideChatPanel
        id={id}
        isLoading={isLoading}
-       stop={stop}
-       append={append}
-       reload={reload}
-       messages={messages}
-       input={input}
-       setInput={setInput}
         start={false}
         name='Trump'
         roundnumber={round}

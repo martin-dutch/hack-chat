@@ -6,11 +6,13 @@ import PollResults from '@/components/poll-results'
 export default function NewYorkTimes({
   headline,
   image,
-  description
+  description,
+  roundNumber,
 }: {
   headline: string
   image?: string | null
   description: string
+  roundNumber?: number
 }) {
   return (
     <div className="flex flex-col items-center justify-center px-2 py-9 w-2/5 mx-auto">
@@ -42,7 +44,7 @@ export default function NewYorkTimes({
           />
           <div className="space-y-2 not-prose">
             <h4 className="text-1xl font-serif font-bold mt-2">
-            Candidates are reacting to this SIMULATED news article: 
+            {`Candidates are reacting to this ${roundNumber === 0 ? 'REAL' :  'SIMULATED'}  news article: `}
             </h4>
           
             <h2 className="text-3xl font-serif font-bold tracking-tight lg:text-4xl">

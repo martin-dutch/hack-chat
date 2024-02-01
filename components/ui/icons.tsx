@@ -198,6 +198,21 @@ function IconUser({ className, ...props }: React.ComponentProps<'svg'>) {
   )
 }
 
+function ImageIcon({ imageUrl, ...props }: any) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 256 256"
+      fill="currentColor"
+      className={`size-10`}
+      {...props}
+    >
+      <image href={imageUrl} x="0" y="0" height="256" width="256" />
+    </svg>
+  );
+}
+
+
 function IconPlus({ className, ...props }: React.ComponentProps<'svg'>) {
   return (
     <svg
@@ -495,6 +510,7 @@ export {
   IconStop,
   IconSidebar,
   IconMoon,
+  ImageIcon,
   IconSun,
   IconCopy,
   IconCheck,

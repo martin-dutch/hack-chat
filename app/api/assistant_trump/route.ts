@@ -1,7 +1,7 @@
 import { getChat } from '@/app/actions';
 import { auth } from '@/auth';
 import { Chat } from '@/lib/types';
-import { USER_ID, getRandomNumberInRange } from '@/lib/utils';
+import { STARTING_ARTICLES, USER_ID, getRandomNumberInRange } from '@/lib/utils';
 import { kv } from '@vercel/kv';
 import OpenAI from 'openai';
 
@@ -32,10 +32,12 @@ export async function POST(req: Request) {
   const {searchParams} = new URL(req.url);
   
   
-  const inputMessage = searchParams.get('message') as string | undefined;
+  const startingArticleNumber = Number(searchParams.get('startingArticleNumber')) ?? 0
   const roundnumber = Number(searchParams.get('roundnumber')) ?? 0
   const chatId = searchParams.get('chatId') as string | undefined;
 
+
+  
   
   // const niki = (searchParams.get('niki') as string) === 'niki'
 
@@ -46,14 +48,22 @@ export async function POST(req: Request) {
       {
         roundnumber,
         chat,
-        inputMessage,
+        inputMessage: `NEWS TITLE: ${
+          STARTING_ARTICLES[startingArticleNumber ].title
+        } NEW ARTICLE: ${
+          STARTING_ARTICLES[startingArticleNumber ].text
+        }`,
         niki: true
       }
     ), doRunsWithStrats(
       {
         roundnumber,
         chat,
-        inputMessage,
+        inputMessage: `NEWS TITLE: ${
+          STARTING_ARTICLES[startingArticleNumber ].title
+        } NEW ARTICLE: ${
+          STARTING_ARTICLES[startingArticleNumber ].text
+        }`,
         niki: false
       }
     )]);

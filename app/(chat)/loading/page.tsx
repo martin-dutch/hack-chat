@@ -33,6 +33,7 @@ export default function IndexPage() {
       method: 'POST',
       body: JSON.stringify({
         chatId: id,
+        newsTitle: newsTitle
       })})
       .then(response => response.json())
       .then(data => {

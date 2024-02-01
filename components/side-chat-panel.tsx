@@ -29,7 +29,6 @@ export interface ChatPanelProps
   roundnumber?: number
 }
 export function SideChatPanel({
-  messages,
   name,
   start,
   threadId,
@@ -40,7 +39,7 @@ export function SideChatPanel({
   const [chatMessages, setChatMessages] = React.useState<OpenAI.Beta.Threads.Messages.ThreadMessage[]>([])
 
   console.log('CHECL THIS THREAD ID', threadId)
-
+const isTrump = name === 'Trump'
   // const inputMessage = searchParams.get('message') as string | undefined;
   //   const roundnumber = Number(searchParams.get('roundnumber')) ?? 0
   //   const chatId = searchParams.get('chatId') as string | undefined;
@@ -68,7 +67,6 @@ export function SideChatPanel({
     
   }, [threadId])
 
-  console.log('MESSAGES', messages)
 
   const containerRef = React.useRef(null);
 
@@ -106,6 +104,7 @@ export function SideChatPanel({
   {chatMessages && (
     <ChatList 
     size="small"
+    trump={isTrump}
       messages={chatMessages?.map((message) => ({
         id: message.id,
         content: text,
