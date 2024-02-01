@@ -75,8 +75,8 @@ const PollResults = ({ nikki, trump, index, selected }: { nikki: number; trump: 
     <Dialog>
       <DialogTrigger asChild>
         <div className=" max-w-2xl mx-auto  my-5 relative cursor-pointer">
-        <h1 className="text-2xl font-bold tracking-tighter sm:text-2xl md:text-1xl">{`Week ${index + 1}`}</h1>
-          <div className={`flex items-center justify-between p-4 ${selected ? 'bg-slate-500' :  'bg-white'}  rounded-lg `}>
+        <h1 className="text-2xl font-bold tracking-tighter sm:text-2xl md:text-1xl">{`Round ${index + 1}`}</h1>
+          <div className={`flex items-center justify-between p-4 ${!selected ? '' :  'bg-white'}  rounded-lg `}>
             <div className="font-medium text-gray-600 ">{`${nikki}% Nikki Haley`}</div>
             <div className={`relative w-full h-2 mx-4 rounded-full bg-gray-200  ${selected ? 'bg-gray-400 ' : 'bg-gray-200 '}`}>
               <div

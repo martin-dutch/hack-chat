@@ -184,20 +184,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
         threadId={chat?.sideChats[round]?.nikiId ?? ''}
        />)}
 
-      {/* <ChatPanel
-        id={id}
-        isLoading={isLoading}
-        stop={stop}
-        append={append}
-        reload={reload}
-        messages={messages}
-        input={input}
-        setInput={setInput}
-      /> */}
-
-
-
-{ chat?.sideChats[round]?.trumpId && (<SideChatPanel
+    { chat?.sideChats[round]?.trumpId && (<SideChatPanel
        id={id}
        isLoading={isLoading}
        stop={stop}

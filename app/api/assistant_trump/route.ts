@@ -7,6 +7,8 @@ import OpenAI from 'openai';
 
 export const maxDuration = 300
 
+// "http://localhost:3000/settings?newsTitle=Haley%20amps%20up%20her%20attacks%20on%20Trump,%20calling%20him%20%E2%80%98totally%20unhinged."
+
 const newsImages = [
 "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/newscms/2018_41/2598091/181009-nikki-haley-donald-trump-un-ew-1220p.jpg",
 "https://cdn.cnn.com/cnnnext/dam/assets/160113122919-nikki-haley-donald-trump-composite-super-tease.jpg",

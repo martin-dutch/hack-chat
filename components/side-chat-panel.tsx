@@ -18,13 +18,7 @@ import OpenAI from 'openai'
 export interface ChatPanelProps
   extends Pick<
     UseChatHelpers,
-    | 'append'
     | 'isLoading'
-    | 'reload'
-    | 'messages'
-    | 'stop'
-    | 'input'
-    | 'setInput'
   > {
   id?: string
   title?: string

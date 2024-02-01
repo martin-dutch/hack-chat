@@ -41,8 +41,12 @@ export default function NewYorkTimes({
             src={image == null || image.length === 0  ? 'https://static.politico.com/43/d7/34b758de4836a2a871d8c3244fda/https-delivery.gettyimages.com/downloads/1048023676' : image}
           />
           <div className="space-y-2 not-prose">
+            <h4 className="text-1xl font-serif font-bold mt-2">
+            Candidates are reacting to this SIMULATED news article: 
+            </h4>
+          
             <h2 className="text-3xl font-serif font-bold tracking-tight lg:text-4xl">
-              {headline || 'Trump destroys Deep State puppet Nikki to MAGA!'}
+              {`${headline}` || 'Trump destroys Deep State puppet Nikki to MAGA!'}
             </h2>
             <p className="text-gray-500 ">By Vox Populi</p>
           </div>

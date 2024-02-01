@@ -21,6 +21,24 @@ import { useParams, usePathname, useRouter } from 'next/navigation'
 import { useChatHook } from '@/lib/hooks/use-chat'
 import { useAuth } from '@/lib/hooks/use-auth'
 
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs"
+
 const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
 export interface ChatProps extends React.ComponentProps<'div'> {
   initialMessages?: Message[]
@@ -37,6 +55,7 @@ import { USER_ID } from '@/lib/utils'
 import PollResults from '@/components/poll-results'
 import Toolbar from '@/components/toolbar'
 import NewYorkTimes from '@/components/nya'
+import { SideChatPanel } from '@/components/side-chat-panel'
 
 export interface ChatPageProps {
   params: {
@@ -99,33 +118,76 @@ export default function ChatPage({ params }: ChatPageProps) {
 
     console.log('chat', chat)
   return (
-    <>
+    <div className="w-full">
       <Toolbar title={`Strategy Summary`} onCallback={() => {
         window.location.href = `/news`
       }} />
-      <div className='flex w-[80%] mx-auto'>
-        <div className='mx-auto w-[40%] my-6  '>
-          <h1 className="pt-2 font-bold tracking-tighter sm:text-2xl md:text-1xl">Poll results</h1>
-          {
-            chat?.articles.map((article, index) => {
-              return (
-              <div key={index} onClick={() => {
-                console.log('CLICKING index', index)
-                setRound(index)
-                }}>
-                <div className='pointer-events-none'>
-                    <PollResults key={index} selected={index === round} index={index} nikki={article.resultsNikky ?? 50} trump={100 - (article.resultsNikky ?? 50)}  />
-                </div>
-            </div>)
-            })
-          }
+      <Tabs defaultValue="account" className="w-full">
+      <TabsList className="grid w-[600px] grid-cols-4 mx-auto mt-6">
+        {
+          chat?.articles.map((article, index) => {
+            return (
+              <TabsTrigger key={index} value={`Round ${index + 1}`}>{`Round ${index + 1}`}</TabsTrigger>
+            )
+          })
+        }
+        <TabsTrigger value="summary">Summary</TabsTrigger>
+      </TabsList>
+      {
+       chat?.articles.map((article, index) => {
+          return (
+            <TabsContent key={index} value={`Round ${index + 1}`}>
+        <NewYorkTimes headline={article.title ?? ''}
+          image={article.image}
+          description={article.text ?? ''}/> 
+              <SideChatPanel
+            id={id}
+            isLoading={false}
+              start={true}
+              name='Nikki Haley'
+              roundnumber={index}
+              chatId={id}
+              threadId={chat?.sideChats[round]?.nikiId ?? ''}
+            /><SideChatPanel
+            id={id}
+            isLoading={false}
+              start={false}
+              name='Trump'
+              roundnumber={index}
+              chatId={id}
+              threadId={chat?.sideChats[round]?.trumpId ?? ''}
+            />
+            </TabsContent>
+          )
+        })}
+      
+      <TabsContent value="summary">
+        <div className='flex w-[80%] mx-auto'>
+          <div className='mx-auto w-[40%] my-6  '>
+            <h1 className="pt-2 font-bold tracking-tighter sm:text-2xl md:text-1xl">Poll results</h1>
+            {
+              chat?.articles.map((article, index) => {
+                return (
+                <div key={index} onClick={() => {
+                  console.log('CLICKING index', index)
+                  setRound(index)
+                  }}>
+                  <div className='pointer-events-none'>
+                      <PollResults key={index} selected={index === round} index={index} nikki={article.resultsNikky ?? 50} trump={100 - (article.resultsNikky ?? 50)}  />
+                  </div>
+              </div>)
+              })
+            }
+          </div>
+          <>
+          <NewYorkTimes headline={news.title}
+            image={news.image}
+            description={news.content}/> 
+          </>
         </div>
-        <>
-        <NewYorkTimes headline={news.title}
-          image={news.image}
-          description={news.content}/> 
-        </>
-      </div>
-    </>
+      </TabsContent>
+    </Tabs>
+      
+    </div>
   )
 }
