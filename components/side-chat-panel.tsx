@@ -82,17 +82,6 @@ const isTrump = name === 'Trump'
   //   role: message.role
   // })))
 
-  const text = chatMessages.map((imageOrText) => {
-    return imageOrText.content.map((content) => {
-      if (content.type === "text") {
-        const parsed =  content as  OpenAI.Beta.Threads.Messages.MessageContentText
-        return parsed.text.value
-      } else {
-        const parsed =  content as  OpenAI.Beta.Threads.Messages.MessageContentImageFile
-        return parsed.image_file.file_id
-      }
-    }).join(' ')
-  }).join('\n')
 
   return (
     <Card className={`w-1/4 fixed ${start ? 'left' : 'right'}-0 inset-y-20 flex flex-col m-4 mt-10 px-1`}>
@@ -107,7 +96,15 @@ const isTrump = name === 'Trump'
     trump={isTrump}
       messages={chatMessages?.map((message) => ({
         id: message.id,
-        content: text,
+        content: message.content.map((content) => {
+          if (content.type === "text") {
+            const parsed =  content as  OpenAI.Beta.Threads.Messages.MessageContentText
+            return parsed.text.value
+          } else {
+            const parsed =  content as  OpenAI.Beta.Threads.Messages.MessageContentImageFile
+            return parsed.image_file.file_id
+          }
+        }).join(' '),
         role: message.role
       })) ?? []} 
     />

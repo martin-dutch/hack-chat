@@ -37,7 +37,7 @@ export async function POST(req: Request) {
   const chatId = searchParams.get('chatId') as string | undefined;
 
 
-  
+
   
   // const niki = (searchParams.get('niki') as string) === 'niki'
 
@@ -247,7 +247,7 @@ async function doRunsWithStrats({
     let lastResponse = ''
     let generatedResponses: string[] = [];
     let lastTrumpResponse = ''
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < 2; i++) {
 
       // Message to trump
 
@@ -272,7 +272,7 @@ async function doRunsWithStrats({
   
       lastTrumpResponse = lastTrumpResponseText
 
-      if(i === 2) continue;
+      if(i > 0) continue;
 
       const responseText1 = await getAssistantReply({
         assistantId: niki ? 'asst_NMlfKjbsBEnZNsq4DHx0upWQ' :  'asst_arAjbxm7Z9UvAGV7hwylsBJi',
@@ -280,7 +280,7 @@ async function doRunsWithStrats({
         content: `${niki ? 'Niki' : 'Trump'}: ${lastTrumpResponse}`
       });
 
-      const responseText1Text = responseText[0].map((imageOrText) => {
+      const responseText1Text = responseText1[0].map((imageOrText) => {
         if (imageOrText.type === "text") {
           const parsed =  imageOrText as  OpenAI.Beta.Threads.Messages.MessageContentText
           return parsed.text.value

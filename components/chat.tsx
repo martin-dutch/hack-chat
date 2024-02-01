@@ -130,12 +130,18 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
         return
       } 
         console.log('FETCHING')
-        fetch(`/api/assistant_trump?message=${newsTitle}&roundnumber=${round}&chatId=${id}&niki=trump`, {
+        fetch(`/api/assistant_trump?startingArticleNumber=${newsTitle}&roundnumber=${round}&chatId=${id}&niki=trump`, {
           method: 'POST',
           redirect: 'follow'
         })
         console.log('ASYNC DONE')
     }, [round])
+
+    useEffect(() => {
+      if(chat?.articles.length === 2) {
+        setRound(1)
+      }
+    },[chat?.articles.length])
     
   return (
     <>

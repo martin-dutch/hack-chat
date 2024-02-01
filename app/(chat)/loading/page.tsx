@@ -15,7 +15,7 @@ export default function IndexPage() {
 
   const currentUrl = window.location.href;
   const urlParams = new URLSearchParams(new URL(currentUrl).search);
-  const newsTitle = urlParams.get('newsTitle') ?? 'Trump slams Haley in the latest Primary polls and says she is horrible!'
+  const newsTitle = Number(urlParams.get('newsTitle') ?? undefined) ?? 0
 
   useEffect(() => {
     const s = async () => {

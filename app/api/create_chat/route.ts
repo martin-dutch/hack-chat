@@ -28,6 +28,8 @@ export async function POST(req: Request) {
     const article = Number(input.newsTitle ?? undefined) ?? 0
 
 
+      console.log('article', article)
+
     // Create a thread if needed
     // const threadId = threadIdINput ?? (await openai.beta.threads.create({})).id;
 
