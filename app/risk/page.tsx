@@ -1,24 +1,22 @@
 "use client"
-import { nanoid } from '@/lib/utils'
 import { Chat } from '@/components/chat'
 import Link from 'next/link'
 import Toolbar from '@/components/toolbar'
 
 export default function IndexPage() {
-  const id = nanoid()
 
   return (
-    <Link href={'risk'}>
-      <Toolbar title="Get Started" mainPage/>
+    <Link href={'actors'}>
+      <Toolbar title="Continue" mainPage/>
       <main className="flex flex-col items-center justify-center h-screen w-full">
       
       {/* <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">COGNISANT.AI</h1> */}
       <div className="flex w-[80%] mx-auto">
         <div >
           {/* Replacing the video tag with an img tag for the GIF */}
-          <div className='fixed top-[30%] text-start'>
-          <h1 className="font-normal  text-gray-800 text-[70px]">HYPERINTELLIGENCE x</h1>
-          <h1 className="font-medium  text-gray-800 top-2 whitespace-nowrap text-[150px]">FOR DEMOCRACY</h1>
+          <div className='fixed top-[30%] text-start left-0 right-0'>
+            <h1 className="font-normal text-center  text-gray-800 text-[40px]">In 1962 the biggest risk to democracy was nuclear armaggedon.</h1>
+            <h1 className="font-normal text-center text-gray-800 text-[40px]"> A palpable threat of physical annihilation</h1>
           </div>
           
           <img
