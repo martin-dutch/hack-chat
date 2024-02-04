@@ -230,6 +230,7 @@ async function doRunsWithStrats({
   const threadId = niki ? chat?.sideChats[roundnumber].nikiId : chat?.sideChats[roundnumber].trumpId
   const adverseThreadId = niki ? chat?.sideChats[roundnumber].nikiAdverseId : chat?.sideChats[roundnumber].trumpAdverseId
 
+
   // // Create a thread if needed
   // const threadId = threadIdINput ?? (await openai.beta.threads.create({})).id;
 

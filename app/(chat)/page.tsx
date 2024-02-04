@@ -9,7 +9,10 @@ export default function IndexPage() {
 
   return (
     <Link href={'risk'}>
+      <div className='mt-[10vh]'>
       <Toolbar title="Get Started" mainPage/>
+      </div>
+      
       <main className="flex flex-col items-center justify-center h-screen w-full">
       
       {/* <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">COGNISANT.AI</h1> */}
@@ -17,10 +20,9 @@ export default function IndexPage() {
         <div >
           {/* Replacing the video tag with an img tag for the GIF */}
           <div className='fixed top-[30%] text-start'>
-          <h1 className="font-normal  text-gray-800 text-[70px]">HYPERINTELLIGENCE x</h1>
-          <h1 className="font-medium  text-gray-800 top-2 whitespace-nowrap text-[150px]">FOR DEMOCRACY</h1>
+            <h1 className="font-normal  text-gray-800 text-[7vh]">HYPERINTELLIGENCE x</h1>
+            <h1 className="font-medium  text-gray-800 top-2 whitespace-nowrap text-[24vh] -translate-y-[8vh] -translate-x-[1vh]">DEMOCRACY</h1>
           </div>
-          
           <img
             alt="Hero Image"
             className="mx-auto w-3/10 h-5/10"
