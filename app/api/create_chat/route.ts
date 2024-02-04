@@ -106,12 +106,14 @@ export async function POST(req: Request) {
             },
         ]
     }
+    console.log('payload', payload)
     await kv.hmset(`chat:${id}`, payload)
     await kv.zadd(`user:chat:${userId}`, {
         score: createdAt,
         member: `chat:${id}`
     })
   
+    console.log('returning')
     return new Response(JSON.stringify({}), {
         headers: { 'Content-Type': 'application/json' }
       });

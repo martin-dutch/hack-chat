@@ -8,6 +8,7 @@ interface OnboardingPagProps {
     title: string
     subtitle?: string
     href?: string
+    buttonRef?: string
     children: React.ReactNode
 }
 
@@ -17,6 +18,7 @@ export default function OnboardingPage({
     title,
     subtitle,
     href,
+    buttonRef,
 }: OnboardingPagProps) {
 
   const content = (
@@ -27,7 +29,7 @@ export default function OnboardingPage({
       
         <div className='mt-[10vh] mx-auto'>
             {/* has a height of 10vh */}
-          <Toolbar title={actionText}/> 
+          <Toolbar title={actionText} buttonRef={buttonRef} /> 
           {/* Replacing the video tag with an img tag for the GIF */}
           <div className='text-start inset-x-0 h-[15vh]'>
             <h1 className="font-normal text-center  text-gray-800 text-[4vh]">{title}</h1>

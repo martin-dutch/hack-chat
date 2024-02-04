@@ -4,18 +4,25 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import { useRouter } from 'next/navigation'
 
 
-export default function Toolbar({ title, mainPage, onCallback }: {title: string, mainPage?: boolean, onCallback?: () => void}) {
-    const router = useRouter()
-  return (
+export default function Toolbar({ title, mainPage, onCallback, buttonRef }: {title: string, mainPage?: boolean, onCallback?: () => void, buttonRef?:string}) {
+
+  const content =   (
     <div className="flex items-center justify-between p-4 text-center h-[10vh]">
       <div className="w-[30vw] border-b-2 border-slate-200 mx-auto">
         <h1 className="font-semibold text-center mx-auto text-[2vh]">{title}</h1>
       </div>
     </div>
   )
+
+  return buttonRef ? (
+    <Link href={buttonRef}>
+      {content}
+    </Link>
+  ) : content
 }
 
 function ArrowLeftIcon(props: any) {
