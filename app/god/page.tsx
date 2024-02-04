@@ -7,7 +7,7 @@ import OnboardingPage from "@/components/onboarding-page"
 
 export default function IndexPage() {
     return (
-        <OnboardingPage title="Lets arm the good guys." subtitle="We created an omniscient political strategist." href="ai-service" >
+        <OnboardingPage title="Let's arm the good guys." subtitle="We created an omniscient political strategist." href="ai-service" >
             <img
                 alt="Hero Image"
                 className="object-scale-down max-h-full pb-[3vh]"

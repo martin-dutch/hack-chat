@@ -8,12 +8,12 @@ export default function IndexPage() {
   const id = nanoid()
 
   return (
-    <Link href={'risk'}>
-      <div className='mt-[10vh]'>
-      <Toolbar title="Get Started" mainPage/>
+    <Link href={'risk'} className='bg-white h-[100vh]'>
+      <div className='mt-[10vh] bg-white'>
+        <Toolbar title="Get Started" mainPage/>
       </div>
       
-      <main className="flex flex-col items-center justify-center h-screen w-full">
+      <main className="flex flex-col items-center justify-center  w-full bg-white">
       
       {/* <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">COGNISANT.AI</h1> */}
       <div className="flex w-[80%] mx-auto">
@@ -29,7 +29,7 @@ export default function IndexPage() {
             src="/liberty.png" // Replace with your GIF file path
             style={{
               aspectRatio: "5/5",
-              height: '60%',
+              height: '60vh',
               position: 'fixed',
               right: '0',
               left: '0',

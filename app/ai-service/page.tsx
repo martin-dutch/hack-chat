@@ -11,21 +11,21 @@ export default function IndexPage() {
         <div className="mx-auto h-[60vh]">
           <div className="flex justify-center">
             <div className="text-left mx-4 w-[20vw]" >
-                <h1 className="text-gray-800 text-[2vh] font-bold">Process Supervision</h1>
-                <h1 className="text-gray-800 text-[1vh]">Generator + discriminator adversary pairs</h1>
-                <img src="https://media.istockphoto.com/id/492684225/vector/the-first-day-of-creation.jpg?s=612x612&w=0&k=20&c=lSN_2JVdNmWzkWMpLgXtUBhPhip0DaxzRIJHOBgTMGE=" alt="Image 1" 
+                {/* <h1 className="text-gray-800 text-[2vh] font-bold">Process Supervision</h1>
+                <h1 className="text-gray-800 text-[1vh]">Generator + discriminator adversary pairs</h1> */}
+                <img src="/process-supervision.png" alt="Image 1" 
                 className="mx-auto w-[20vw] mb-[5%] mt-3" />
             </div>
             <div className="text-left mx-4">
-            <h1 className="text-gray-800 text-[2vh] font-bold">Active Learning</h1>
-                <h1 className="text-gray-800 text-[1vh]">Iterative retraining reward model</h1>
-                <img src="https://media.istockphoto.com/id/492684225/vector/the-first-day-of-creation.jpg?s=612x612&w=0&k=20&c=lSN_2JVdNmWzkWMpLgXtUBhPhip0DaxzRIJHOBgTMGE=" alt="Image 2" 
+            {/* <h1 className="text-gray-800 text-[2vh] font-bold">Active Learning</h1>
+                <h1 className="text-gray-800 text-[1vh]">Iterative retraining reward model</h1> */}
+                <img src="/active-learning.png" alt="Image 2" 
                 className="mx-auto w-[20vw] mb-[5%] mt-3" />
             </div>
             <div className="text-left mx-4">
-            <h1 className="text-gray-800 text-[2vh] font-bold">Tree of Thought</h1>
-                <h1 className="text-gray-800 text-[1vh]">Multiple paths, self-eval, backtrack, coherent units</h1>
-                <img src="https://media.istockphoto.com/id/492684225/vector/the-first-day-of-creation.jpg?s=612x612&w=0&k=20&c=lSN_2JVdNmWzkWMpLgXtUBhPhip0DaxzRIJHOBgTMGE=" alt="Image 3" 
+            {/* <h1 className="text-gray-800 text-[2vh] font-bold">Tree of Thought</h1>
+                <h1 className="text-gray-800 text-[1vh]">Multiple paths, self-eval, backtrack, coherent units</h1> */}
+                <img src="/tree-of-thoughts.png" alt="Image 3" 
                 className="mx-auto w-[20vw] mb-[5%] mt-3" />
             </div>
         </div>
