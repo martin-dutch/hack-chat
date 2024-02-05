@@ -168,7 +168,7 @@ export default function ChatPage({ params }: ChatPageProps) {
       </div>
           </div>
           <div className="flex flex-row overflow-auto h-[65vh]" >
-          {index !== (chat?.articles.length ?? 0) -1 && (<SideChatPanel
+          {index !== (chat?.articles.length ?? 0) && (<SideChatPanel
             id={id}
             isLoading={false}
               start={true}
@@ -180,7 +180,7 @@ export default function ChatPage({ params }: ChatPageProps) {
             />)}
             <Separator className='h-[65vh] bg-slate-200' orientation='vertical'/>
             {/* <div className='h-full w-[1%] bg-slate-100'></div> */}
-            {index !== (chat?.articles.length ?? 0) -1 && (<SideChatPanel
+            {index !== (chat?.articles.length ?? 0) && (<SideChatPanel
             id={id}
             isLoading={false}
               start={false}
@@ -204,12 +204,12 @@ export default function ChatPage({ params }: ChatPageProps) {
             </div>
 
         
-          <NewYorkTimes headline={chat.articles[index + 1]?.title ?? ''}
-              image={chat.articles[index + 1]?.image}
-              roundNumber={index}
+          <NewYorkTimes headline={chat.articles[round + 1]?.title ?? ''}
+              image={chat.articles[round + 1]?.image}
+              roundNumber={round}
               isShowingArticleGenerationAnimation={false}
-              pollResultNikky={chat.articles[index + 1]?.resultsNikky ?? 50}
-              description={chat.articles[index + 1]?.text ?? ''}/>
+              pollResultNikky={chat.articles[round + 1]?.resultsNikky ?? 50}
+              description={chat.articles[round + 1]?.text ?? ''}/>
           </div>)}
              
             </TabsContent>

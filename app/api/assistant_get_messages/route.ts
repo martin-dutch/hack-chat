@@ -32,7 +32,7 @@ export async function GET(req: Request) {
     // const threadId = chat.sideChats[roundnumber].trumpId
 
     // const threadId = searchParams.get('threadId') as string | undefined;
-    console.log('threadId')
+    // console.log('threadId')
     if(threadMainId == null || threadAdverseId == undefined) {
         return new Response(JSON.stringify({ messages: [] }), {
             headers: { 'Content-Type': 'application/json' }
@@ -49,7 +49,7 @@ export async function GET(req: Request) {
 
     // console.log('lets try!', threadId)
     
-    console.log('messages',JSON.stringify(messages))
+    // console.log('messages',JSON.stringify(messages))
     return new Response(JSON.stringify({ messages: messages }), {
         headers: { 'Content-Type': 'application/json' }
     });

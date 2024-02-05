@@ -119,15 +119,30 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
         console.log('ASYNC DONE')
     }, [round])
 
-    useEffect(() => {
-        setRound((chat?.articles.length ?? 1) - 1)
-    },[chat?.articles.length])
+    // useEffect(() => {
+    //     setRound((chat?.articles.length ?? 1) - 1)
+    // },[chat?.articles.length])
 
     
     const isShowingArticleGenerationAnimation = leftMessages === 3 && rightMessages === 3
   return (
     <div className="mt-[10vh]">
     <Toolbar stage={3} title={`Round ${round + 1}`} />
+      <div className=''>
+        {
+          isShowingArticleGenerationAnimation && (
+            <div className=''>=
+              <div className='flex space-x-2 justify-center items-center '>
+                <div className='h-3 w-3 bg-black rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+                <div className='h-3 w-3 bg-black rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+                <div className='h-3 w-3 bg-black rounded-full animate-bounce'></div>
+              </div>
+              <h1 className="text-1xl font-serif font-bold mt-2">Generating new Article</h1>
+            </div>
+          )
+        }
+        
+        </div>
       <div className='flex justify-between'>
           <div className="p-4">
         <div className="text-3xl font-bold">{`${'Nikki Haley'} - HQ`}</div>
@@ -195,13 +210,17 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
              <Separator className='mt-4'/>
             </div>
 
-        
+        {
+          (chat.articles[round + 1]?.title?.length != 0 && (<Timer onTimerComplete={() => setRound((chat?.articles.length ?? 1) - 1)} />))
+        }
           <NewYorkTimes headline={chat.articles[round + 1]?.title ?? ''}
               image={chat.articles[round + 1]?.image}
               roundNumber={round}
               isShowingArticleGenerationAnimation={false}
               pollResultNikky={chat.articles[round + 1]?.resultsNikky ?? 50}
-              description={chat.articles[round + 1]?.text ?? ''}/>
+              description={chat.articles[round + 1]?.text ?? ''}
+              
+              />
           </div>)}
              
     </div>
