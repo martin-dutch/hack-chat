@@ -90,10 +90,7 @@ const isTrump = name === 'Trump'
 
 
   return (
-    <Card className={`w-1/4 fixed ${start ? 'left' : 'right'}-0 inset-y-20 flex flex-col m-4 mt-10 px-1`}>
-      <CardHeader className="border-b p-4">
-        <CardTitle className="text-lg font-bold">{`${name} - HQ`}</CardTitle>
-      </CardHeader>
+    <div className={`flex w-[49%] flex-col`}>
       <ScrollArea className="flex-1 p-4" ref={containerRef}>
       <div className="flex">
   {chatMessages && (
@@ -117,6 +114,6 @@ const isTrump = name === 'Trump'
   )}
 </div>
       </ScrollArea>
-    </Card>
+    </div>
   )
 }

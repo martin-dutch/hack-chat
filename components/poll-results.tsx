@@ -72,64 +72,31 @@ const PollResults = ({ nikki, trump, index, selected }: { nikki: number; trump: 
     newDate.setDate(newDate.getDate() + (index + 1) * 2);
     
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <div className=" max-w-2xl mx-auto  my-5 relative cursor-pointer">
-        {/* <h1 className="text-2xl font-bold tracking-tighter sm:text-2xl md:text-1xl">{`Round ${index + 1}`}</h1> */}
-          <div className={`flex items-center justify-between p-4 ${!selected ? '' :  'bg-white'}  rounded-lg `}>
-            <div className="font-medium text-gray-600 ">{`${nikki}% Nikki Haley`}</div>
-            <div className={`relative w-full h-2 mx-4 rounded-full bg-gray-200  ${selected ? 'bg-gray-400 ' : 'bg-gray-200 '}`}>
+    <div className='rounded bg-white'>
+        <div className="relative cursor-pointer">
+          <div className={`flex items-center justify-between rounded-lg`}>
+            <div className={`relative w-full h-10 bg-gray-200 `}>
               <div
-                className="absolute top-0 left-0 h-full bg-green-500 rounded-full"
+                className="absolute top-0 left-0 h-full bg-red-300 rounded flex items-center pl-4"
                 style={{
                   width: `${nikki}%`
                 }}
-              />
+              >
+                <h1 className="font-medium text-black">{`${nikki}% Nikki Haley`}</h1>
+              </div>
               <div
-                className="absolute top-0 left-0 h-full bg-red-500 rounded-full"
+                className="absolute top-0 left-0 h-full bg-red-500 rounded flex items-center pr-4 justify-end"
                 style={{
-                  marginLeft: `${nikki}%`,
-                  width: `${trump}%`
+                  marginLeft: `${nikki + 0.25}%`,
+                  width: `${trump - 0.25}%`
                 }}
-              />
+              >
+                <div className="font-medium text-black ">{`${trump}% Donald Trump`}</div>
+              </div>
             </div>
-            <div className="font-medium text-gray-600 ">{`${trump}% Donald Trump`}</div>
           </div>
         </div>
-      </DialogTrigger>
-      <DialogContent className="min-w-[800px] h-[800px]">
-        <DialogHeader>
-          <DialogTitle>Debate Deep Dive</DialogTitle>
-          <DialogDescription>
-            A full look at the debate between Nikki Haley and Donald Trump.
-          </DialogDescription>
-        </DialogHeader>
-        <Title>Epic Moments</Title>
-
-        <Grid numItemsSm={2} className="gap-6">
-          {debateMoments.map(item => (
-            <Card key={item.title}>
-              <Icon variant="light" icon={item.icon} size="sm" color="blue" />
-              <Title className="mt-6">{item.title}</Title>
-              <Text className="mt-2">{item.text}</Text>
-            </Card>
-          ))}
-        </Grid>
-
-        <Title>Skill Breakdown</Title>
-
-        <BarChart
-          className="mt-4 h-80"
-          data={data}
-          index="Skill"
-          categories={['Nikki Haley', 'Donald Trump']}
-          colors={['red', 'blue']}
-          valueFormatter={valueFormatter}
-          stack={true}
-        />
-        <DialogFooter></DialogFooter>
-      </DialogContent>
-    </Dialog>
+    </div>
   )
 }
 
