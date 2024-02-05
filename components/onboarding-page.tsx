@@ -10,6 +10,7 @@ interface OnboardingPagProps {
     href?: string
     buttonRef?: string
     children: React.ReactNode
+    stage?: number
 }
 
 export default function OnboardingPage({
@@ -19,6 +20,7 @@ export default function OnboardingPage({
     subtitle,
     href,
     buttonRef,
+    stage,
 }: OnboardingPagProps) {
 
   const content = (
@@ -29,7 +31,7 @@ export default function OnboardingPage({
       
         <div className='mt-[10vh] mx-auto'>
             {/* has a height of 10vh */}
-          <Toolbar title={actionText} buttonRef={buttonRef} /> 
+          <Toolbar title={actionText} buttonRef={buttonRef} stage={stage}/> 
           {/* Replacing the video tag with an img tag for the GIF */}
           <div className='text-start inset-x-0 h-[15vh]'>
             <h1 className="font-normal text-center  text-gray-800 text-[4vh]">{title}</h1>

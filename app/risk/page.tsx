@@ -10,10 +10,10 @@ export default function IndexPage() {
         <OnboardingPage title="In 1962 the biggest risk to democracy was nuclear armaggedon." subtitle="A palpable threat of physical annihilation" href="actors" >
             <img
                 alt="Hero Image"
-                className="object-scale-down h-[70vh]"
-                src="/liberty.png" // Replace with your GIF file path
+                className="object-scale-down h-[100vh] mb-[-20vh]"
+                src="/output-onlinegiftools.gif" // Replace with your GIF file path
                 style={{
-                    aspectRatio: "1/1",
+                    aspectRatio: "2/1",
                     objectFit: "contain",
                 }}
           />

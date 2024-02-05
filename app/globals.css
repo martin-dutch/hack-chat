@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
  
 @layer base {
   :root {
@@ -42,5 +43,9 @@
   }
   body {
     @apply bg-white;
+  }
+
+  html {
+    color-scheme: light !important;
   }
 }

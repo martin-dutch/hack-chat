@@ -14,6 +14,7 @@ import { ChatShareDialog } from '@/components/chat-share-dialog'
 import { ChatList } from './chat-list'
 import axios from 'axios'
 import OpenAI from 'openai'
+import { ChatScrollAnchor } from './chat-scroll-anchor'
 
 export interface ChatPanelProps
   extends Pick<
@@ -112,7 +113,7 @@ const isTrump = name === 'Trump'
       })) ?? []} 
     />
   )}
-</div>
+</div><ChatScrollAnchor trackVisibility={false} />
       </ScrollArea>
     </div>
   )

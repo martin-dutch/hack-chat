@@ -118,10 +118,8 @@ export default function ChatPage({ params }: ChatPageProps) {
 
     console.log('chat', chat)
   return (
-    <div className="w-[90vw] mx-auto bg-white">
-      <Toolbar title={`Strategy Summary`} onCallback={() => {
-        window.location.href = `/news`
-      }} />
+    <div className="w-[90vw] mx-auto bg-white mt-[10vh]">
+      <Toolbar stage={3} />
       <Tabs defaultValue="Round 1" className="w-full">
       <TabsList className={`grid w-[600px] grid-cols-${(chat?.articles.length ?? 0) + 1} mx-auto mt-6`}>
         {

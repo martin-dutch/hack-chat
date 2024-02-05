@@ -33,7 +33,7 @@ export default function ConfigureComponent() {
   console.log('queryParamValue',queryParamValue)
   
   return (
-    <OnboardingPage title='You can make Nikki more populist or inflammatory before we start' subtitle={`Start on default settings if it's your first time`} actionText='Start AI simulation' buttonRef={`/loading?newsTitle=${queryParamValue}&populism=${populism[0]}&tone=${tone[0]}`}>
+    <OnboardingPage title='You can make Nikki more populist or inflammatory before we start' subtitle={`Start on default settings if it's your first time`} actionText='Start AI simulation' buttonRef={`/loading?newsTitle=${queryParamValue}&populism=${populism[0]}&tone=${tone[0]}`} stage={2}>
     <div key="1" className="w-full mx-auto">
       <div className="space-y-8 h-[50vh]">
         <div>

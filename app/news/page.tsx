@@ -22,7 +22,7 @@ const newStories = []
 
 export default function Component() {
   return (
-    <OnboardingPage title="How should Nikki Haley's campaign react to" actionText='Click on an article'>
+    <OnboardingPage title="How should Nikki Haley's campaign react to" actionText='Click on an article' stage={1}>
     <section className="w-full py-4 md:py-16 lg:py-16">
       <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6 lg:gap-10">
         <div className="grid w-full grid-cols-1 md:grid-cols-5 lg:grid-cols-5 gap-6 md:gap-8 lg:gap-12">

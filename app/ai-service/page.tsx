@@ -31,10 +31,10 @@ export default function IndexPage() {
         </div>
         <div>
             <div className="flex justify-center flex-col">
-                <h1 className="text-center  text-gray-800 text-[3vh]">+</h1>
-                <h1 className="text-center  text-gray-800 text-[3vh]">Real polling data</h1>
-                <h1 className="text-center  text-gray-800 text-[3vh]">Campaign finance data</h1>
-                <h1 className="text-center  text-gray-800 text-[3vh]">US voter sentiment data</h1>
+                <div className="text-center my-[-2px] text-gray-800 text-[3vh]">+</div>
+                <div className="text-center my-[-2px]  text-gray-800 text-[3vh]">Real polling data</div>
+                <div className="text-center my-[-2px]  text-gray-800 text-[3vh]">Campaign finance data</div>
+                <div className="text-center my-[-2px]  text-gray-800 text-[3vh]">US voter sentiment data</div>
             </div>
         </div>
         </div>

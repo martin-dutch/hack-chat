@@ -6,15 +6,54 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useRouter } from 'next/navigation'
+import React from "react"
+import { IconArrowElbow } from "./ui/icons"
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 
-export default function Toolbar({ title, mainPage, onCallback, buttonRef }: {title: string, mainPage?: boolean, onCallback?: () => void, buttonRef?:string}) {
+const states = [
+  {
+    name: 'Home',
+    href: '/'
+  },
+  {
+    name: 'News',
+    href: '/news'
+  },
+  {
+    name: 'Settings',
+    href: '/settings'
+  },
+  {
+    name: 'Simmulation',
+    href: undefined
+  }
+]
 
+export default function Toolbar({ title, mainPage, onCallback, buttonRef, stage }: {title?: string, mainPage?: boolean, onCallback?: () => void, buttonRef?:string, stage?: number}) {
+  const [hover, setHover] = React.useState(false)
+console.log('stage', stage)
   const content =   (
-    <div className="flex items-center justify-between p-4 text-center h-[10vh]">
-      <div className="w-[30vw] border-b-2 border-slate-200 mx-auto">
-        <h1 className="font-semibold text-center mx-auto text-[2vh]">{title}</h1>
+    <div className="flex items-center justify-between p-4 text-center h-[10vh] flex-col">
+      <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="mx-auto flex h-[2.5vh]" >
+        {stage && (<ArrowLeftIcon className="h-full scale-x-200 my-auto self-center" onClick={
+          () => {
+            if (onCallback) {
+              onCallback()
+            }
+          }
+        } />)}
+        <div>
+          {hover && stage != null && states.slice(0,stage + 1).map((stageRef, index) => (
+            <Button key={index} variant={stage === index ? 'outline' : 'link'} className="h-full py-1" onClick={() => {
+              if(stageRef.href) window.location.href = stageRef.href
+            }}  >{stageRef.name}</Button>
+          ))}
+        </div>
       </div>
+      {title != null && (<div className="w-[30vw] border-b-2 border-slate-200 mx-auto">
+        <h1 className="font-semibold text-center mx-auto text-[2vh]">{title}</h1>
+      </div>)}
     </div>
   )
 
@@ -30,7 +69,7 @@ function ArrowLeftIcon(props: any) {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
+      width="48" // Double the original width
       height="24"
       viewBox="0 0 24 24"
       fill="none"
@@ -39,8 +78,8 @@ function ArrowLeftIcon(props: any) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="m12 19-7-7 7-7" />
-      <path d="M19 12H5" />
+      <path d="M24 19L10 12 24 5" />
+      <path d="M38 12H10" />
     </svg>
   )
 }

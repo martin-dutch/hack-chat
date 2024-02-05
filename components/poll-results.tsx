@@ -75,14 +75,14 @@ const PollResults = ({ nikki, trump, index, selected }: { nikki: number; trump: 
     <div className='rounded bg-white'>
         <div className="relative cursor-pointer">
           <div className={`flex items-center justify-between rounded-lg`}>
-            <div className={`relative w-full h-10 bg-gray-200 `}>
+            <div className={`relative w-full h-10 bg-gray-200 border-gray-200 border-2 rounded p-1`}>
               <div
                 className="absolute top-0 left-0 h-full bg-red-300 rounded flex items-center pl-4"
                 style={{
                   width: `${nikki}%`
                 }}
               >
-                <h1 className="font-medium text-black">{`${nikki}% Nikki Haley`}</h1>
+                <div className="font-medium text-black  text-nowrap z-20">{`${nikki}% Nikki Haley`}</div>
               </div>
               <div
                 className="absolute top-0 left-0 h-full bg-red-500 rounded flex items-center pr-4 justify-end"

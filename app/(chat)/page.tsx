@@ -10,7 +10,7 @@ export default function IndexPage() {
   return (
     <Link href={'risk'} className='bg-white h-[100vh]'>
       <div className='mt-[10vh] bg-white'>
-        <Toolbar title="Get Started" mainPage/>
+        <Toolbar title="Get Started" mainPage />
       </div>
       
       <main className="flex flex-col items-center justify-center  w-full bg-white">

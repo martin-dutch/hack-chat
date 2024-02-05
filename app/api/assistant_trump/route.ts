@@ -23,6 +23,24 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || ''
 });
 
+const getIntensityWord = (intensity: number) => {
+  const normalised = Math.abs(50 - intensity);
+  if(normalised < 10) {
+    return 'Somewhat'
+  } else if (normalised < 20) {
+    return 'Quite'
+  }
+  else if (normalised < 30) {
+    return 'Very'
+  }
+  else if (normalised < 40) {
+    return 'Extremely'
+  }
+  else{
+    return 'Very Extremely'
+  }
+}
+
 export async function POST(req: Request) {
   // const input = await req.json();
   
@@ -35,36 +53,47 @@ export async function POST(req: Request) {
   const startingArticleNumber = Number(searchParams.get('startingArticleNumber')) ?? 0
   const roundnumber = Number(searchParams.get('roundnumber')) ?? 0
   const chatId = searchParams.get('chatId') as string | undefined;
+  const populism = Number(searchParams.get('populism') as string | undefined);
+  const tone = Number(searchParams.get('tone') as string | undefined);
 
 
-
-  
   // const niki = (searchParams.get('niki') as string) === 'niki'
 
   const chat = await getChat(chatId ?? '', userId)
+
+  const articleToUse = roundnumber === 0 ? STARTING_ARTICLES[startingArticleNumber] :
+    chat?.articles[roundnumber] ?? STARTING_ARTICLES[startingArticleNumber]
 
   try {
     const results = await Promise.allSettled([doRunsWithStrats(
       {
         roundnumber,
         chat,
-        inputMessage: `NEWS TITLE: ${
-          STARTING_ARTICLES[startingArticleNumber ].title
+        inputMessage: `IMPORTANT: You are ${getIntensityWord(populism)}  ${populism < 50 ? `Purely fact-based` : `Unrealistic, bombastic promises`} and have a ${getIntensityWord(tone)} ${tone < 50 ? `Conciliatory, hope-based` : `Inflammatory, provocative, fear-based`} Tone
+        
+        NEWS TITLE: ${
+          articleToUse.title
         } NEW ARTICLE: ${
-          STARTING_ARTICLES[startingArticleNumber ].text
+          articleToUse.text
         }`,
-        niki: true
+        niki: true,
+        populism,
+        tone
       }
     ), doRunsWithStrats(
       {
         roundnumber,
         chat,
-        inputMessage: `NEWS TITLE: ${
-          STARTING_ARTICLES[startingArticleNumber ].title
+        inputMessage: `IMPORTANT: You are ${getIntensityWord(populism)}  ${populism < 50 ? `Purely fact-based` : `Unrealistic, bombastic promises`} and have a ${getIntensityWord(tone)} ${tone < 50 ? `Conciliatory, hope-based` : `Inflammatory, provocative, fear-based`} Tone
+        
+        NEWS TITLE: ${
+          articleToUse.title
         } NEW ARTICLE: ${
-          STARTING_ARTICLES[startingArticleNumber ].text
+          articleToUse.text
         }`,
-        niki: false
+        niki: false,
+        populism,
+        tone
       }
     )]);
 
@@ -109,7 +138,7 @@ export async function POST(req: Request) {
 
       const resultsPoll = await getAssistantReply({
         assistantId: 'asst_sXdokNxmrlh522FL0WQPYn9n',
-        content: `Results: ${summaryText}`
+        content: `Input1: ${returnValues[0]} Input2: ${returnValues[1]} Input3: ${summaryText}`
       })
       
       const resultsPollText = resultsPoll[0].map((imageOrText) => {
@@ -220,12 +249,16 @@ async function doRunsWithStrats({
   roundnumber,
   chat,
   inputMessage,
-  niki
+  niki,
+  populism,
+  tone
 }: {
   roundnumber: number;
   chat?: Chat | null;
   inputMessage?: string | null;
   niki: boolean;
+  populism?: number;
+  tone?: number;
 }) : Promise<string> {
   const threadId = niki ? chat?.sideChats[roundnumber].nikiId : chat?.sideChats[roundnumber].trumpId
   const adverseThreadId = niki ? chat?.sideChats[roundnumber].nikiAdverseId : chat?.sideChats[roundnumber].trumpAdverseId

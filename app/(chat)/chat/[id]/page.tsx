@@ -5,6 +5,7 @@ import { auth } from '@/auth'
 import { getChat } from '@/app/actions'
 import { Chat } from '@/components/chat'
 import { USER_ID } from '@/lib/utils'
+import Toolbar from '@/components/toolbar'
 
 export interface ChatPageProps {
   params: {
@@ -44,5 +45,9 @@ export default async function ChatPage({ params }: ChatPageProps) {
     notFound()
   }
 
-  return <Chat id={chat.id} initialMessages={chat.messages} />
+  return <div className="w-[90vw] mx-auto bg-white">
+      {/* <Toolbar title={`Strategy Summary`} onCallback={() => {
+        window.location.href = `/news`
+      }} stage={3} /> */}
+    <Chat id={chat.id} initialMessages={chat.messages} /></div>
 }

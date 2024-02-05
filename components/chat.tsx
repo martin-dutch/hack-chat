@@ -73,28 +73,6 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
   // const
   //   session
   //  = useAuth()
-  const [previewTokenDialog, setPreviewTokenDialog] = useState(IS_PREVIEW)
-  const [previewTokenInput, setPreviewTokenInput] = useState(previewToken ?? '')
-  const { messages, append, reload, stop, isLoading, input, setInput } =
-    useChat({
-      initialMessages,
-      id,
-      body: {
-        id,
-        previewToken
-      },
-      onResponse(response) {
-        if (response.status === 401) {
-          toast.error(response.statusText)
-        }
-      },
-      onFinish() {
-        if (!path.includes('chat')) {
-          window.history.pushState({}, '', `/chat/${id}`)
-        }
-      }
-    })
-
     const {
       chat,
       loading,
@@ -148,7 +126,8 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
     
     const isShowingArticleGenerationAnimation = leftMessages === 3 && rightMessages === 3
   return (
-    <>
+    <div className="mt-[10vh]">
+    <Toolbar stage={3} title={`Round ${round + 1}`} />
       <div className='flex justify-between'>
           <div className="p-4">
         <div className="text-3xl font-bold">{`${'Nikki Haley'} - HQ`}</div>
@@ -182,28 +161,27 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
       </div>
           </div>
           <div className="flex flex-row overflow-auto h-[65vh]" >
-          {round !== (chat?.articles.length ?? 0) -1 && (<SideChatPanel
-            id={id}
-            isLoading={false}
+          <SideChatPanel
+              id={id}
+              isLoading={false}
               start={true}
               name='Nikki Haley'
               roundnumber={round}
               chatId={id}
-              onNumberMessagesChanged={(numb) => {}}
+              onNumberMessagesChanged={(numb) => setLeftMessages(numb)}
               threadId={chat?.sideChats[round]?.nikiId ?? ''}
-            />)}
+            />
             <Separator className='h-[65vh] bg-slate-200' orientation='vertical'/>
-            {/* <div className='h-full w-[1%] bg-slate-100'></div> */}
-            {round !== (chat?.articles.length ?? 0) -1 && (<SideChatPanel
+          <SideChatPanel
             id={id}
             isLoading={false}
               start={false}
               name='Trump'
               roundnumber={round}
-              onNumberMessagesChanged={(numb) => {}}
               chatId={id}
               threadId={chat?.sideChats[round]?.trumpId ?? ''}
-            />)}
+              onNumberMessagesChanged={(numb) => setRightMessages(numb)}
+            />
           </div>
 
 
@@ -226,6 +204,6 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
               description={chat.articles[round + 1]?.text ?? ''}/>
           </div>)}
              
-    </>
+    </div>
   )
 }
