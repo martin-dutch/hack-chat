@@ -130,14 +130,14 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
     <Toolbar stage={3} title={`Round ${round + 1}`} />
       <div className=''>
         {
-          isShowingArticleGenerationAnimation && (
-            <div className=''>=
+          !(chat?.articles[round + 1]?.title?.length != 0) && isShowingArticleGenerationAnimation && (
+            <div className=''>
               <div className='flex space-x-2 justify-center items-center '>
                 <div className='h-3 w-3 bg-black rounded-full animate-bounce [animation-delay:-0.3s]'></div>
                 <div className='h-3 w-3 bg-black rounded-full animate-bounce [animation-delay:-0.15s]'></div>
                 <div className='h-3 w-3 bg-black rounded-full animate-bounce'></div>
               </div>
-              <h1 className="text-1xl font-serif font-bold mt-2">Generating new Article</h1>
+              <h1 className="text-1xl font-serif font-bold mt-2 mx-auto">Generating new Article</h1>
             </div>
           )
         }

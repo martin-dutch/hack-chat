@@ -22,6 +22,13 @@ const Timer: FC<TimerComponentProps> = ({ onTimerComplete }) => {
     return () => clearInterval(intervalId);
   }, [timeLeft, onTimerComplete]);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: document.body.offsetHeight,
+      behavior: 'smooth'
+    })
+  },[])
+
   return (
     <div className="flex items-center justify-center space-x-4 pt-6 max-w-2xl mx-auto">
       <div className="w-full h-2 bg-gray-200 rounded-full mb-3">

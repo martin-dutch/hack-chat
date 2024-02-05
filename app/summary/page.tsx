@@ -123,7 +123,7 @@ export default function ChatPage({ params }: ChatPageProps) {
       <Tabs defaultValue="Round 1" className="w-full">
       <TabsList className={`grid w-[600px] grid-cols-${(chat?.articles.length ?? 0) + 1} mx-auto mt-6`}>
         {
-          chat?.articles.map((article, index) => {
+          chat?.articles.slice(0, -1).map((article, index) => {
             return (
               <TabsTrigger key={index} value={`Round ${index + 1}`}>{`Round ${index + 1}`}</TabsTrigger>
             )
@@ -132,7 +132,7 @@ export default function ChatPage({ params }: ChatPageProps) {
         <TabsTrigger value="summary">Summary</TabsTrigger>
       </TabsList>
       {
-       chat?.articles.map((article, index) => {
+       chat?.articles.slice(0, -1).map((article, index) => {
           return (
             <TabsContent key={index} value={`Round ${index + 1}`}>
           <div className='flex justify-between'>
@@ -198,18 +198,18 @@ export default function ChatPage({ params }: ChatPageProps) {
             <div className='mt-10'>
             <div className="text-3xl font-bold">
               {`
-                Simulation ${round + 1} results
+                Simulation ${index + 1} results
               `}</div> 
              <Separator className='mt-4'/>
             </div>
 
         
-          <NewYorkTimes headline={chat.articles[round + 1]?.title ?? ''}
-              image={chat.articles[round + 1]?.image}
-              roundNumber={round}
+          <NewYorkTimes headline={chat.articles[index + 1]?.title ?? ''}
+              image={chat.articles[index + 1]?.image}
+              roundNumber={index}
               isShowingArticleGenerationAnimation={false}
-              pollResultNikky={chat.articles[round + 1]?.resultsNikky ?? 50}
-              description={chat.articles[round + 1]?.text ?? ''}/>
+              pollResultNikky={chat.articles[index + 1]?.resultsNikky ?? 50}
+              description={chat.articles[index + 1]?.text ?? ''}/>
           </div>)}
              
             </TabsContent>
