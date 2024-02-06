@@ -121,11 +121,11 @@ export default function ChatPage({ params }: ChatPageProps) {
     <div className="w-[90vw] mx-auto bg-white mt-[10vh]">
       <Toolbar stage={3} />
       <Tabs defaultValue="Round 1" className="w-full">
-      <TabsList className={`grid w-[600px] grid-cols-${(chat?.articles.length ?? 0) + 1} mx-auto mt-6`}>
+      <TabsList className={`grid w-[600px] grid-cols-${(chat?.articles.length ?? 0)} mx-auto mt-6`}>
         {
           chat?.articles.slice(0, -1).map((article, index) => {
             return (
-              <TabsTrigger key={index} value={`Round ${index + 1}`}>{`Round ${index + 1}/3`}</TabsTrigger>
+              <TabsTrigger key={index} value={`Round ${index + 1}`}>{`Round ${index + 1}`}</TabsTrigger>
             )
           })
         }
@@ -228,7 +228,7 @@ export default function ChatPage({ params }: ChatPageProps) {
                   setRound(index)
                   }}>
                   <div className={`pointer-events-none `}>
-                      <h1 className='text-[2vh] font-semibold py-2'>{`Round ${index + 1}/3`}</h1>
+                      <h1 className='text-[2vh] font-semibold py-2'>{index === 0 ? 'Current State' : `Round ${index + 1}`}</h1>
                       <div className={`pointer-events-none rounded-lg p-4 ${index !== round ? 'bg-white' : 'bg-gray-100' } `}>
                       <PollResults key={index} selected={index === round} index={index} nikki={article.resultsNikky ?? 50} trump={100 - (article.resultsNikky ?? 50)}  />
                       </div>
