@@ -127,10 +127,10 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
     const isShowingArticleGenerationAnimation = leftMessages === 3 && rightMessages === 3
   return (
     <div className="mt-[10vh]">
-    <Toolbar stage={3} title={`Round ${round + 1}`} />
+    <Toolbar stage={3} title={`Round ${round + 1}/3`} />
       <div className=''>
         {
-          !(chat?.articles[round + 1]?.title?.length != 0) && isShowingArticleGenerationAnimation && (
+          isShowingArticleGenerationAnimation && (
             <div className=''>
               <div className='flex space-x-2 justify-center items-center '>
                 <div className='h-3 w-3 bg-black rounded-full animate-bounce [animation-delay:-0.3s]'></div>

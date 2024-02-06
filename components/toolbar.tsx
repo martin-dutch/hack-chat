@@ -6,7 +6,7 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useRouter } from 'next/navigation'
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { IconArrowElbow } from "./ui/icons"
 import { FaArrowLeftLong } from "react-icons/fa6";
 
@@ -32,6 +32,22 @@ const states = [
 
 export default function Toolbar({ title, mainPage, onCallback, buttonRef, stage }: {title?: string, mainPage?: boolean, onCallback?: () => void, buttonRef?:string, stage?: number}) {
   const [hover, setHover] = React.useState(false)
+  const [queryParamValue, setQueryParamValue] = useState('');
+
+  useEffect(() => {
+    // Ensure this code runs only on the client side
+    // if (typeof window !== 'undefined') {
+      // Create URLSearchParams object from the current window location
+      const searchParams = new URLSearchParams(new URL(window.location.href).search);
+      // Get the value of 'queryParam'
+      const value = searchParams.get('newsTitle');
+      // Update the state with the value
+      setQueryParamValue(value ?? '');
+    // }
+  }, []); // Empty dependency array ensures this runs once on mount
+
+  console.log('queryParamValue',queryParamValue)
+  
 console.log('stage', stage)
   const content =   (
     <div className="flex items-center justify-between p-4 text-center h-[10vh] flex-col">
@@ -46,7 +62,7 @@ console.log('stage', stage)
         <div>
           {hover && stage != null && states.slice(0,stage + 1).map((stageRef, index) => (
             <Button key={index} variant={stage === index ? 'outline' : 'link'} className="h-full py-1" onClick={() => {
-              if(stageRef.href) window.location.href = stageRef.href
+              if(stageRef.href) window.location.href = stageRef.href + (queryParamValue.length !== 0 ? `?newsTitle=${queryParamValue}` : '')
             }}  >{stageRef.name}</Button>
           ))}
         </div>

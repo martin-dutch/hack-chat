@@ -79,6 +79,15 @@ const isTrump = name === 'Trump'
 
   React.useEffect(() => {
     const container = containerRef.current;
+    if (container) {
+      try {
+        // @ts-ignore
+        container.scrollTop = container.scrollHeight;
+      } catch (e) {
+        console.error('Failed to scroll to bottom:', e);
+      }
+      
+    }
   }, [chatMessages.length]); // Dependency array, in this case, the content that changes
 
 

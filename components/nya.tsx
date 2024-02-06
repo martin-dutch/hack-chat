@@ -66,7 +66,7 @@ export default function NewYorkTimes({
         </div>
       </header>
       <div className="flex flex-col space-y-2 w-full mt-2">
-        <article className="prose prose-gray max-w-none pb-[200px]">
+        <article className="prose prose-gray max-w-none pb-[100px]">
         <div className="w-full overflow-hidden">
          <div className="flex items-center w-full">
               <img
