@@ -4,9 +4,10 @@ import './Timer.css'; // Import the CSS file
 // Define a type for the component's props
 type TimerComponentProps = {
   onTimerComplete: () => void;
+  round?: number;
 };
 
-const Timer: FC<TimerComponentProps> = ({ onTimerComplete }) => {
+const Timer: FC<TimerComponentProps> = ({ onTimerComplete , round}) => {
   const [timeLeft, setTimeLeft] = useState(20);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const Timer: FC<TimerComponentProps> = ({ onTimerComplete }) => {
       top: document.body.offsetHeight,
       behavior: 'smooth'
     })
-  },[])
+  },[round])
 
   return (
     <div className="flex items-center justify-center space-x-4 pt-6 max-w-2xl mx-auto">

@@ -41,7 +41,7 @@ export function SideChatPanel({
   const [shareDialogOpen, setShareDialogOpen] = React.useState(false)
   const [chatMessages, setChatMessages] = React.useState<OpenAI.Beta.Threads.Messages.ThreadMessage[]>([])
 
-  console.log('CHECL THIS THREAD ID', threadId)
+  // console.log('CHECL THIS THREAD ID', threadId)
 const isTrump = name === 'Trump'
   // const inputMessage = searchParams.get('message') as string | undefined;
   //   const roundnumber = Number(searchParams.get('roundnumber')) ?? 0
@@ -51,9 +51,9 @@ const isTrump = name === 'Trump'
   React.useEffect(() => {
     const fetchMessages = async () => {
       try {
-        console.log('threadId',threadId)
+        // console.log('threadId',threadId)
         const response = await axios.get(`/api/assistant_get_messages?niki=${start ? 'niki' : 'trump'}&roundnumber=${roundnumber}&chatId=${chatId}`)
-        console.log('response.data', JSON.stringify(response.data.messages))
+        // console.log('response.data', JSON.stringify(response.data.messages))
         setChatMessages(response.data.messages)
       } catch (error) {
         console.error('Failed to fetch messages:', error)
@@ -75,23 +75,9 @@ const isTrump = name === 'Trump'
   },[chatMessages.map((message) => message.content.length > 0).length])
 
 
-  const containerRef = React.useRef(null);
+ 
 
-  React.useEffect(() => {
-    const container = containerRef.current;
-    if (container) {
-      try {
-        // @ts-ignore
-        container.scrollTop = container.scrollHeight;
-      } catch (e) {
-        console.error('Failed to scroll to bottom:', e);
-      }
-      
-    }
-  }, [chatMessages.length]); // Dependency array, in this case, the content that changes
-
-
-  console.log('JSONFIEd' , JSON.stringify(chatMessages))
+  // console.log('JSONFIEd' , JSON.stringify(chatMessages))
   // console.log('chatMessages TRANSPOSE', chatMessages?.map((message) => ({
   //   id: message.id,
   //   content: message.content[0].text.value,
@@ -100,8 +86,8 @@ const isTrump = name === 'Trump'
 
 
   return (
-    <div className={`flex w-[49%] flex-col`}>
-      <ScrollArea className="flex-1 p-4" ref={containerRef}>
+    <div className={`flex w-[49%] flex-col px-4`}>
+      {/* <ScrollArea className="flex-1 p-4"> */}
       <div className="flex">
   {chatMessages && (
     <ChatList 
@@ -123,7 +109,7 @@ const isTrump = name === 'Trump'
     />
   )}
 </div><ChatScrollAnchor trackVisibility={false} />
-      </ScrollArea>
+      {/* </ScrollArea> */}
     </div>
   )
 }

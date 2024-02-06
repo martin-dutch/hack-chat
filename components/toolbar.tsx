@@ -50,8 +50,8 @@ export default function Toolbar({ title, mainPage, onCallback, buttonRef, stage 
   
 console.log('stage', stage)
   const content =   (
-    <div className="flex items-center justify-between p-4 text-center h-[10vh] flex-col">
-      <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="mx-auto flex h-[2.5vh]" >
+    <div className="flex items-center justify-between pb-[2vh]  pb-[2vh] text-center h-[10vh] flex-col">
+      <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="mx-auto flex h-[2.5vh] mb-[2vh]" >
         {stage && (<ArrowLeftIcon className="h-full scale-x-200 my-auto self-center" onClick={
           () => {
             if (onCallback) {
@@ -87,7 +87,7 @@ function ArrowLeftIcon(props: any) {
       xmlns="http://www.w3.org/2000/svg"
       width="48" // Double the original width
       height="24"
-      viewBox="0 0 24 24"
+      viewBox="0 0 48 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="2"

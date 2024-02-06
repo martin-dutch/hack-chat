@@ -21,7 +21,7 @@ export interface ChatMessageProps {
 
 export function ChatMessage({ message,size, trump, ...props }: ChatMessageProps) {
   const small = size === 'small'
-  console.log('message.content',message.content)
+  // console.log('message.content',message.content)
   return (
     <div
       className={cn(`group relative mb-4 flex items-start md:-ml-12 px-8 ${message.role === 'user' ? 'flex-row' : 'flex-row-reverse'}`)}

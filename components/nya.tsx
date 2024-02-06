@@ -41,7 +41,7 @@ export default function NewYorkTimes({
 	<div className='h-3 w-3 bg-black rounded-full animate-bounce'></div>
 </div>
 
-      <h1 className="text-1xl font-serif font-bold mt-2">Generating new Article</h1>
+      <h1 className="text-1xl font-serif font-bold mt-2">Generating new Strategy</h1>
       </div>
 
           )

@@ -124,20 +124,20 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
     // },[chat?.articles.length])
 
     
-    const isShowingArticleGenerationAnimation = leftMessages === 3 && rightMessages === 3
+    const isShowingArticleGenerationAnimation = chat?.articles[round + 1]?.title?.length == null && leftMessages === 3 && rightMessages === 3
   return (
     <div className="mt-[10vh]">
     <Toolbar stage={3} title={`Round ${round + 1}/3`} />
-      <div className=''>
+      <div className='mx-auto'>
         {
           isShowingArticleGenerationAnimation && (
-            <div className=''>
+            <div className='mx-auto flex flex-col'>
               <div className='flex space-x-2 justify-center items-center '>
                 <div className='h-3 w-3 bg-black rounded-full animate-bounce [animation-delay:-0.3s]'></div>
                 <div className='h-3 w-3 bg-black rounded-full animate-bounce [animation-delay:-0.15s]'></div>
                 <div className='h-3 w-3 bg-black rounded-full animate-bounce'></div>
               </div>
-              <h1 className="text-1xl font-serif font-bold mt-2 mx-auto">Generating new Article</h1>
+              <h1 className="text-1xl font-serif font-bold mt-2 mx-auto">Generating new Strategy</h1>
             </div>
           )
         }
@@ -175,7 +175,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
             </div>
       </div>
           </div>
-          <div className="flex flex-row overflow-auto h-[65vh]" >
+          <div className="flex flex-row " >
           <SideChatPanel
               id={id}
               isLoading={false}
@@ -211,7 +211,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
             </div>
 
         {
-          (chat.articles[round + 1]?.title?.length != 0 && (<Timer onTimerComplete={() => setRound((chat?.articles.length ?? 1) - 1)} />))
+          (chat.articles[round + 1]?.title?.length != 0 && (<Timer round={round} onTimerComplete={() => setRound((chat?.articles.length ?? 1) - 1)} />))
         }
           <NewYorkTimes headline={chat.articles[round + 1]?.title ?? ''}
               image={chat.articles[round + 1]?.image}
