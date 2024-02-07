@@ -77,7 +77,7 @@ export function ChatMessage({ message,size, trump, ...props }: ChatMessageProps)
             }
           }}
         >
-          {`**${message.role === 'user' ? trump ? 'TRUMP' : 'NIKI' : 'ADVISOR'} SAYS** \n\n` + message.content}
+          {`**${message.role === 'user' ? trump ? 'TRUMP' : 'NIKKI' : 'ADVISOR'} SAYS** \n\n` + message.content}
         </MemoizedReactMarkdown>
         {
           message.content.length === 0 ? (<MyLoader/>) : (<></>)

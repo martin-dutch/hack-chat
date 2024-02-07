@@ -78,8 +78,8 @@ export const STARTING_ARTICLES = [{
   "We may end up advertising in the Super Tuesday states ... but we're following the campaign's lead and the best thing we can do for all those states is have a strong showing in South Carolina."
   The bottom line: "We're the insurgent outsider campaign, we're the underdog," Harris said. "That's right where Nikki likes to be."`,
   image: `https://images.axios.com/Kz_tZLkV2PDt1JoEvNJghwYeR8Q=/0x0:5282x2971/1920x1080/2024/02/01/1706816793605.jpg?w=1920`,
-  resultsNikky: 32,
-  resultsTrump: 68
+  resultsNikky: 18,
+  resultsTrump: 82
 },{
   title: "US presidential hopeful Nikki Haley uses SNL cameo to mock Trump",
   text: `Republican presidential candidate Haley made jibes about Trump’s age and mental competency on the TV show Saturday Night Live.
@@ -130,8 +130,8 @@ export const STARTING_ARTICLES = [{
   
   Haley replied: “Yep, I probably should have said that the first time.”`,
   image:  "https://www.aljazeera.com/wp-content/uploads/2024/02/AP24035596929506-1707072480.jpg?resize=770%2C513&quality=80",
-  resultsNikky: 32,
-  resultsTrump: 68
+  resultsNikky: 18,
+  resultsTrump: 82
 },{
   title: `Nikki Haley signals to Donald Trump that she’s in it for the long haul`,
   text: `Former South Carolina governor faces pressure test in her home state as GOP questions: Is the race over?
@@ -169,8 +169,8 @@ export const STARTING_ARTICLES = [{
   
   `,
   image: "https://cdn.cnn.com/cnnnext/dam/assets/160113122919-nikki-haley-donald-trump-composite-super-tease.jpg",
-  resultsNikky: 32,
-  resultsTrump: 68
+  resultsNikky: 18,
+  resultsTrump: 82
 },{
   title: "Nikki Haley: Trump spends more time ‘ranting’ than fighting for American people",
   text: `Republican candidate attacks Trump for being more concerned with himself than with country ahead of South Carolina primary
@@ -217,8 +217,8 @@ export const STARTING_ARTICLES = [{
   
   Meanwhile, Haley made a cameo appearance on the US comedy staple Saturday Night Live.`,
   image:  "https://i.guim.co.uk/img/media/91f2d1dde7831e751b78096ab317bc7390078695/0_396_5938_3563/master/5938.jpg?width=620&dpr=2&s=none",
-  resultsNikky: 32,
-  resultsTrump: 68
+  resultsNikky: 18,
+  resultsTrump: 82
 },{
   title: "Trump wasn't on the ballot, but Haley loses Nevada's Republican presidential primary",
   text: `NBC News projects Haley has lost the GOP primary, even though Trump wasn't on the ballot In another blow to Nikki Haley's campaign, NBC News projects that she has lost Nevada's Republican primary. Instead, more voters chose the "none of these candidates" option.
@@ -247,8 +247,8 @@ export const STARTING_ARTICLES = [{
   
   Then again, Trump may have more on his mind than Nevada. Thursday is also when the Supreme Court will hear oral arguments in his ballot access case.`,
   image: "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2024/01/1440/810/Donald-Trump-Las-Vegas-Jan.-27-2024.jpg?ve=1&tl=1",
-  resultsNikky: 32,
-  resultsTrump: 68
+  resultsNikky: 18,
+  resultsTrump: 82
 },{
   title: "Republican Men Always Bail on Competent Women. Nikki Haley is just the latest example.",
   text: `CNN co-host Dana Bash pressed GOP presidential candidate Nikki Haley on whether former President Trump’s reported interactions with writer E. Jean Carroll’s attorney show he has issues with women.
@@ -267,8 +267,8 @@ export const STARTING_ARTICLES = [{
   
   “At which point there was a huge pile of documents, exhibits, sitting in front of him, and he took the pile and he just threw it across the table. And stormed out of the room,” Kaplan told podcast hosts George Conway and Sarah Longwell in an interview last week.`,
   image:  "https://images.wsj.net/im-918291/?width=700&size=1.5&pixel_ratio=2",
-  resultsNikky: 32,
-  resultsTrump: 68
+  resultsNikky: 18,
+  resultsTrump: 82
 },{
   title: "Nikki Haley won't be able to spin a 'win' out of Nevada's GOP nomination fiasco",
   text: `In another blow to Nikki Haley's campaign, NBC News projects that she has lost Nevada's Republican primary. Instead, more voters chose the "none of these candidates" option.
@@ -296,8 +296,8 @@ export const STARTING_ARTICLES = [{
   
   And remember, 26 delegates is a relatively small number. The GOP nominee must win 1,215 delegates to emerge victorious this summer and challenge President Joe Biden in the November general election. Currently Trump leads Haley 33-17. That means it’s possible Team Trump has brazenly gamed the system for a handful of delegates — and a losing story on Friday morning.`,
   image:  "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1240w,f_auto,q_auto:best/rockcms/2024-02/240206-donald-trump-nikki-haley-msnbc-mn-1300-d2d6c2.jpg",
-  resultsNikky: 32,
-  resultsTrump: 68
+  resultsNikky: 18,
+  resultsTrump: 82
 },{
   title: "Dana Bash presses Haley on whether Trump ‘has a problem with women who challenge him’",
   text: `CNN co-host Dana Bash pressed GOP presidential candidate Nikki Haley on whether former President Trump’s reported interactions with writer E. Jean Carroll’s attorney show he has issues with women.
@@ -317,8 +317,8 @@ export const STARTING_ARTICLES = [{
   “At which point there was a huge pile of documents, exhibits, sitting in front of him, and he took the pile and he just threw it across the table. And stormed out of the room,” Kaplan told podcast hosts George Conway and Sarah Longwell in an interview last week.`,
   image: "https://thehill.com/wp-content/uploads/sites/2/2024/01/Politics-Haley_011124_AP_Andrew-Harnik.jpg?w=1280&h=720&crop=1"
   ,
-  resultsNikky: 32,
-  resultsTrump: 68},{
+  resultsNikky: 18,
+  resultsTrump: 82},{
     title: "Nikki Hayley should have enough money to campaign beyond South Carolina, no matter the outcome",
     text: `Nikki Haley is continuing to fundraise across the country, despite recent losses to former President Trump in Iowa and New Hampshire.
 
@@ -338,8 +338,8 @@ export const STARTING_ARTICLES = [{
     
     "70% of Americans want a different choice and that's exactly what we're giving them."`,
     image: "https://images.axios.com/qL4IOe-n_PZ4yY6qr96xDr6JY-Q=/0x267:5743x3497/1920x1080/2024/01/29/1706494697011.jpg?w=1920",
-    resultsNikky: 32,
-    resultsTrump: 68
+    resultsNikky: 18,
+    resultsTrump: 82
   },{
     title: 'Trump to Newsmax: Haley Supported by Democrats',
     text: `Nikki Haley is being supported by Democrats, former President Donald Trump told Newsmax on Monday.
@@ -353,6 +353,6 @@ export const STARTING_ARTICLES = [{
     Trump said that he has almost all Republicans endorsing him in South Carolina, including both senators.
     `,
     image: 'https://www.thetimes.co.uk/imageserver/image/%2Fmethode%2Ftimes%2Fprod%2Fweb%2Fbin%2Fd741bc20-4390-4ce8-afec-d653dc5f02f2.jpg?crop=1600%2C900%2C0%2C0&resize=1500',
-    resultsNikky: 32,
-    resultsTrump: 68
+    resultsNikky: 18,
+    resultsTrump: 82
   }]
