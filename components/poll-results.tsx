@@ -217,7 +217,7 @@ const PollResults =({ nikki, trump, index, selected, clickable }: { nikki: numbe
         <Grid numItemsSm={2} className="gap-6">
           {debateMoments.map(item => (
             <Card key={item.title}>
-              <Icon variant="light" icon={item.icon} size="sm" color="black" />
+              <Icon variant="light" icon={item.icon} size="sm" color="slate" />
               <Title className="mt-6">{item.title}</Title>
               <Text className="mt-2">{item.text}</Text>
             </Card>
