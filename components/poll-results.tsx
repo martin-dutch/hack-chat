@@ -205,7 +205,7 @@ const PollResults =({ nikki, trump, index, selected, clickable }: { nikki: numbe
             </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="min-w-[1200px]">
+      <DialogContent className="min-w-[70vw] h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Debate Deep Dive</DialogTitle>
           <DialogDescription>
