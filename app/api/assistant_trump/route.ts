@@ -71,6 +71,7 @@ export async function POST(req: Request) {
         chat,
         inputMessage: `IMPORTANT: You are ${getIntensityWord(populism)}  ${populism < 50 ? `Purely fact-based` : `Unrealistic, bombastic promises`} and have a ${getIntensityWord(tone)} ${tone < 50 ? `Conciliatory, hope-based` : `Inflammatory, provocative, fear-based`} Tone
         
+        ${roundnumber !== 0 ? 'Be quite random and feel free to make up significant events that might come from the Article' : ''}
         NEWS TITLE: ${
           articleToUse.title
         } NEW ARTICLE: ${
@@ -86,6 +87,7 @@ export async function POST(req: Request) {
         chat,
         inputMessage: `IMPORTANT: You are ${getIntensityWord(populism)}  ${populism < 50 ? `Purely fact-based` : `Unrealistic, bombastic promises`} and have a ${getIntensityWord(tone)} ${tone < 50 ? `Conciliatory, hope-based` : `Inflammatory, provocative, fear-based`} Tone
         
+        ${roundnumber !== 0 ? 'Be quite random and feel free to make up significant events that might come from the Article' : ''}
         NEWS TITLE: ${
           articleToUse.title
         } NEW ARTICLE: ${
@@ -344,14 +346,14 @@ async function getAssistantReply({ assistantId, threadId, content }: {
   // Add a message to the thread
   const createdMessage = await openai.beta.threads.messages.create(threadIdFinal, {
     role: 'user',
-    content: content
+    content: content,
   });
 
   console.log('createdMessage', createdMessage);
 
   // Run the assistant on the thread
   const run = await openai.beta.threads.runs.create(threadIdFinal, {
-    assistant_id: assistantId
+    assistant_id: assistantId,
   });
 
     console.log('run', run.id);
