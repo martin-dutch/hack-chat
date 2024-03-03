@@ -109,7 +109,7 @@ export async function POST(req: Request) {
       }})
   
       const summary = await getAssistantReply({
-        assistantId: 'asst_8o36HjD0Gx2h6TaMwANwoRNQ',
+        assistantId: 'asst_QQx9bsQsdplgECvtVGi6qKAY',
         content: `Niki Strategy: ${returnValues[0]} /n Trump Strategy: ${returnValues[1]}`
       });
 
@@ -124,7 +124,7 @@ export async function POST(req: Request) {
       }).join('\n')
 
       const title = await getAssistantReply({
-        assistantId: 'asst_2GupFb1sk0vQL2m0iuFyCnAa',
+        assistantId: 'asst_TR1Db8qerfrKXXJgJeOaLkgF',
         content: `Summary: ${summaryText}`
       });
 
@@ -139,7 +139,7 @@ export async function POST(req: Request) {
       }).join('\n')
 
       const resultsPoll = await getAssistantReply({
-        assistantId: 'asst_sXdokNxmrlh522FL0WQPYn9n',
+        assistantId: 'asst_loOvLzDUbrBowu7TfrP1sSFe',
         content: `Input1: ${returnValues[0]} Input2: ${returnValues[1]} Input3: ${summaryText}`
       })
       
@@ -289,7 +289,7 @@ async function doRunsWithStrats({
 
 
       const responseText = await getAssistantReply({
-        assistantId: niki ? 'asst_eeaOPQnAm8ZvMznbia73kVsf' : 'asst_1hZXnkQnGP0yt86buk3XeS8b',
+        assistantId: niki ? 'asst_QxWDsnjtxZoPVfs7fmvK8kWk' : 'asst_Ub0py4QWLC2TTJMDg04Zjylz',
         threadId: threadId,
         content: i === 0 ? (inputMessage ?? '') : `Criticism on last strategy: ${lastResponse}`
       });
@@ -311,7 +311,7 @@ async function doRunsWithStrats({
       if(i > 0) continue;
 
       const responseText1 = await getAssistantReply({
-        assistantId: niki ? 'asst_NMlfKjbsBEnZNsq4DHx0upWQ' :  'asst_arAjbxm7Z9UvAGV7hwylsBJi',
+        assistantId: niki ? 'asst_PV0q4q2jdhKFDioUXIrqR8eJ' :  'asst_GCBiiPJ8rw93w9XNuShReVsd',
         threadId: adverseThreadId,
         content: `${niki ? 'Niki' : 'Trump'}: ${lastTrumpResponse}`
       });
