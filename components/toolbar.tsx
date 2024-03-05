@@ -25,7 +25,7 @@ const states = [
     href: '/settings'
   },
   {
-    name: 'Simmulation',
+    name: 'Simulation',
     href: undefined
   }
 ]

@@ -43,7 +43,7 @@ const getIntensityWord = (intensity: number) => {
 
 export async function POST(req: Request) {
   // const input = await req.json();
-  
+  console.log('RUNNING THE SEQUENCE')
   const userId = USER_ID // (await auth())?.user.id ?? ''
 
 
@@ -113,7 +113,7 @@ export async function POST(req: Request) {
         content: `Niki Strategy: ${returnValues[0]} /n Trump Strategy: ${returnValues[1]}`
       });
 
-      const summaryText = summary[0].map((imageOrText) => {
+      const summaryText = summary[0]?.map((imageOrText) => {
         if (imageOrText.type === "text") {
           const parsed =  imageOrText as  OpenAI.Beta.Threads.Messages.MessageContentText
           return parsed.text.value
@@ -192,8 +192,8 @@ console.log('summa', JSON.stringify(summary))
         title: titleText,
         text: summaryText,
         image: newsImages[roundnumber],
-        resultsNikky: getResultsNikky(resultsPollText),
-        resultsTrump: getResultsTrump(resultsPollText)
+        resultsNikky: getResultsNikky(chat?.articles[0]?.resultsNikky ?? 34),
+        resultsTrump: getResultsNikky(chat?.articles[0]?.resultsTrump ?? 66),
       }])
     }
     console.log('payload', JSON.stringify(payload))
@@ -229,18 +229,18 @@ function getText(summary: any): string {
 }
 
 
-function getResultsNikky(results: string): number {
+function getResultsNikky(previousResults: number): number {
   try {
-    return parseInt(results.split(' ')[0]) ?? getRandomNumberInRange(43, 50);
+    return previousResults + getRandomNumberInRange(-5, 5);
   } catch (error) {
     console.error(error);
-    return getRandomNumberInRange(43, 50);
+    return getRandomNumberInRange(28, 38);
   }
 }
 
-function getResultsTrump(results: any): number {
+function getResultsTrump(previousResults: number): number {
   try {
-    return parseInt(results.split(' ')[1]) ?? getRandomNumberInRange(43, 50);
+    return previousResults + getRandomNumberInRange(-5, 5);
   } catch (error) {
     console.error(error);
     return getRandomNumberInRange(43, 50);
@@ -294,7 +294,7 @@ async function doRunsWithStrats({
         content: i === 0 ? (inputMessage ?? '') : `Criticism on last strategy: ${lastResponse}`
       });
   
-      console.log('responseText', JSON.stringify(responseText));
+      // console.log('responseText', JSON.stringify(responseText));
 
       const lastTrumpResponseText = responseText[0].map((imageOrText) => {
         if (imageOrText.type === "text") {
@@ -349,7 +349,7 @@ async function getAssistantReply({ assistantId, threadId, content }: {
     content: content,
   });
 
-  console.log('createdMessage', createdMessage);
+  // console.log('createdMessage', createdMessage);
 
   // Run the assistant on the thread
   const run = await openai.beta.threads.runs.create(threadIdFinal, {
@@ -361,7 +361,7 @@ async function getAssistantReply({ assistantId, threadId, content }: {
   // Wait for the run to complete
   await waitForRunCompletion(openai, threadIdFinal, run);
   
-  console.log('run done', run.id);
+  // console.log('run done', run.id);
 
   // Get the assistant's response
   const responseMessages = await openai.beta.threads.messages.list(threadIdFinal, {
@@ -369,7 +369,7 @@ async function getAssistantReply({ assistantId, threadId, content }: {
     order: 'asc'
   });
 
-  console.log('responseMessages', JSON.stringify(responseMessages.data))
+  // console.log('responseMessages', JSON.stringify(responseMessages.data))
 
   // Extract text content from the response
   return responseMessages.data

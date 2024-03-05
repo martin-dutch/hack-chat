@@ -49,7 +49,7 @@ export async function GET(req: Request) {
 
     // console.log('lets try!', threadId)
     
-    // console.log('messages',JSON.stringify(messages))
+    console.log('messages',JSON.stringify(messages))
     return new Response(JSON.stringify({ messages: messages }), {
         headers: { 'Content-Type': 'application/json' }
     });
