@@ -230,7 +230,7 @@ export default function ChatPage({ params }: ChatPageProps) {
                   <div className={`pointer-events-none `}>
                       <h1 className='text-[2vh] font-semibold py-2'>{index === 0 ? 'Current Polls' : `Round ${index}`}</h1>
                       <div className={`pointer-events-none rounded-lg p-4 ${index !== round ? 'bg-white' : 'bg-gray-100' } `}>
-                      <PollResults key={index} selected={index === round} index={index} nikki={article.resultsNikky ?? 50} trump={100 - (article.resultsNikky ?? 50)}  />
+                      <PollResults key={index} selected={index === round} index={index} nikki={article.resultsNikky ?? 25 + round * 3} trump={100 - (article.resultsNikky ?? 25 + round * 3)}  />
                       </div>
                   </div>
               </div>)

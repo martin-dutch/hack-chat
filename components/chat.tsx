@@ -217,7 +217,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
               image={chat.articles[round + 1]?.image}
               roundNumber={round}
               isShowingArticleGenerationAnimation={false}
-              pollResultNikky={chat.articles[round + 1]?.resultsNikky ?? 50}
+              pollResultNikky={chat.articles[round + 1]?.resultsNikky ?? 25 + round * 3}
               description={chat.articles[round + 1]?.text ?? ''}
               
               />
