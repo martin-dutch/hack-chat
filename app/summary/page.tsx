@@ -208,7 +208,7 @@ export default function ChatPage({ params }: ChatPageProps) {
               image={chat.articles[index + 1]?.image}
               roundNumber={index}
               isShowingArticleGenerationAnimation={false}
-              pollResultNikky={chat.articles[index + 1]?.resultsNikky ?? 50}
+              pollResultNikky={chat.articles[index + 1]?.resultsNikky ?? 25 + round * 3}
               description={chat.articles[index + 1]?.text ?? ''}/>
           </div>)}
              
